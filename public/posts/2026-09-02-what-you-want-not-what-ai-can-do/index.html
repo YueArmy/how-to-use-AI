@@ -3,14 +3,6 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-  /* ランタイム起動前でも地色を確定させる。
-     helmet 内の指定はブート後にしか効かないため、ここに直接置く。 */
-  :root { color-scheme: light; }
-  html, body { background: #f7f4ef; color: #1d1b18; }
-</style>
-<title>AI活用は「何ができるか」ではなく「何をしたいか」</title>
-<meta name="description" content="AIの側から入ると、活用方法の一覧の中から自分に当てはまるものを探すことになります。業務のほうから入る——「やり方」「組み合わせ」「事例」の3つの切り口で、実際にどう考えたかを書きます。">
 <script src="./support.js"></script>
 </head>
 <body>
@@ -33,7 +25,7 @@
 </div>
 
 <sc-if value="{{ showBar }}" hint-placeholder-val="{{ false }}">
-<div style="position:fixed;top:3px;left:0;right:0;z-index:49;font-family:'Noto Sans JP',sans-serif;background:rgba(247,244,239,.94);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);transform:translateZ(0);-webkit-transform:translateZ(0);will-change:transform;border-bottom:1px solid rgba(221,211,198,.7)">
+<div style="position:fixed;top:3px;left:0;right:0;z-index:49;font-family:'Noto Sans JP',sans-serif;background:rgba(247,244,239,.88);backdrop-filter:blur(14px);border-bottom:1px solid rgba(221,211,198,.7)">
   <div style="max-width:1080px;margin:0 auto;padding:0 20px;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px;position:relative">
     <div style="display:flex;align-items:center;gap:12px;min-width:0;pointer-events:none;user-select:none">
       <span style="width:7px;height:7px;background:#a8412a;border-radius:50%;flex:none"></span>
@@ -97,7 +89,7 @@
   <header style="max-width:1080px;margin:0 auto;padding:{{ headerPad }};display:flex;flex-direction:column;gap:38px">
     <div style="display:flex;align-items:center;gap:14px;font-size:12px;letter-spacing:.16em;color:#8a8178;font-family:'JetBrains Mono',monospace">
       <span style="width:26px;height:1px;background:#c9beb2"></span>
-      <span>AI PRACTICE / NOTES</span>
+      <span>実践メモ</span>
     </div>
     <h1 style="margin:0;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(34px,5.4vw,64px);line-height:1.42;letter-spacing:-.01em;color:#171512;text-wrap:pretty;max-width:20em">
       <span style="display:block">AI活用は</span>
@@ -105,18 +97,16 @@
       <span style="display:block;margin-left:-.5em;color:#a8412a">「何をしたいか」</span>
     </h1>
     <p style="margin:0;max-width:30em;font-size:clamp(17px,15.9px + .28vw,19px);line-height:2.05;color:#4c4741;text-wrap:pretty">
-      AIの側から入ると、活用方法の一覧の中から自分に当てはまるものを探すことになります。業務のほうから入る——「やり方」「組み合わせ」「事例」の3つの切り口で、実際にどう考えたかを書きます。
+      「AIで何ができるか」を調べるほど、自分の仕事から遠ざかっていく。効いたのは、AIの知識ではなく、考える順番でした。
     </p>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:20px;padding:0 0 34px;font-size:13px;color:#6b645b;letter-spacing:.06em">
       <span style="font-family:'JetBrains Mono',monospace">2026.09</span>
       <span style="width:1px;height:12px;background:#d5cbbf"></span>
       <span>読了 約{{ readingMinutes }}分</span>
-      <span style="width:1px;height:12px;background:#d5cbbf"></span>
-      <span>考え方 / 実践メモ</span>
     </div>
     <figure style="margin:0 0 40px;display:flex;flex-direction:column;gap:12px">
       <img src="images/hero_desk_notes.png" alt="机の上に広げた手書きの構成メモと付箋" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:2px;display:block" />
-      <figcaption style="font-size:13px;line-height:1.85;color:#8a8178">AIに触る前に決めていたのは、誰に向けて、何を持ち帰ってほしいかだけだった。</figcaption>
+      <figcaption style="font-size:13px;line-height:1.85;color:#8a8178">先に決めるのは、AIの使い方ではなく、何をしたいか。</figcaption>
     </figure>
   </header>
 
@@ -135,9 +125,9 @@
         <div>「そもそもAIって、何ができるの？」</div>
       </div>
 
-      <p style="margin:0">この2つの問いは、どちらもAIの側から始まっています。AIの側から入ると、活用方法の一覧を見て、その中から自分に当てはまるものを探すことになります。数が多いわりに、自分の仕事とはなかなかつながりません。</p>
+      <p style="margin:0">この2つの問いは、どちらもAIから始まっています。AIを起点にすると、活用方法の一覧を見て、その中から自分に当てはまるものを探すことになります。数が多いわりに、自分の仕事とはなかなかつながりません。</p>
 
-      <p style="margin:0">私は普段からAIを使うほうですが、差があるとすれば、スキルではなく考え方だと思っています。やっていたのは、その逆でした。AIではなく、業務のほうから入る。「何をしたいか」を先に決めて、そこから「それをAIでどう実現するか」を考えています。</p>
+      <p style="margin:0">私は普段からAIを使うほうですが、差があるとすれば、スキルではなく考え方だと思っています。やっているのは、逆の順番です。AIではなく、自分の業務を起点にする。「何をしたいか」を先に決めて、そこから「それをAIでどう実現するか」を考えています。</p>
 
       <p style="margin:0">ここでいう「やりたいこと」は、新しく何かを始めることではありません。新しいことを始めようとすると、それ自体が負担になってしまいます。今やっている作業の目的を、もっと効果的に、もっと効率よく達成できないか。考えるのはそれだけです。</p>
 
@@ -145,7 +135,7 @@
 
       <section id="s1" style="display:flex;flex-direction:column;gap:26px;padding-top:52px;scroll-margin-top:-44px">
         <h2 style="margin:0;display:flex;flex-direction:column;gap:16px;border-top:2px solid #171512;padding-top:22px;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(26px,22.4px + .96vw,33px);line-height:1.5;color:#171512;letter-spacing:-.005em">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.2em;color:#a8412a">01</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.2em;color:#a8412a">前提</span>
           できることは、使う人によって変わる
         </h2>
 
@@ -160,12 +150,12 @@
           <p style="margin:0;font-size:clamp(16px,14.9px + .28vw,18px);line-height:1.95">今やっている作業の中で、「これ、面倒だな」「これができたらいいのに」と思っているものを一つ思い浮かべてみてください。AIでできるかどうかは、この時点では考えなくて大丈夫です。</p>
         </div>
 
-        <p style="margin:0">仕事のことでなくても構いません。むしろ最初は、趣味や家のことでもいいと思います。業務でいきなり使おうとすると、失敗できないぶん、手が止まりやすいからです。</p>
+        <p style="margin:0">仕事のことでなくても構いません。むしろ最初は、趣味のことからでいいと思います。業務でいきなり使おうとすると、失敗できないぶん、手が止まりやすいからです。</p>
       </section>
 
       <section id="s2" style="display:flex;flex-direction:column;gap:26px;padding-top:52px;scroll-margin-top:-44px">
         <h2 style="margin:0;display:flex;flex-direction:column;gap:16px;border-top:2px solid #171512;padding-top:22px;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(26px,22.4px + .96vw,33px);line-height:1.5;color:#171512">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.2em;color:#a8412a">02</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.2em;color:#a8412a">全体像</span>
           考えることは1つ、切り口は3つ
         </h2>
 
@@ -184,7 +174,7 @@
             </div>
             <div style="display:flex;flex-direction:column;gap:5px;padding-bottom:6px">
               <span style="font-weight:700;font-size:17px;color:#171512">やり方</span>
-              <span style="font-size:14px;line-height:1.85;color:#6b645b">何をすれば良くなるか</span>
+              <span style="font-size:14px;line-height:1.85;color:#6b645b">良くするために、何が効果的か</span>
             </div>
             <div style="display:flex;align-items:center;gap:8px;padding:0 0 22px">
               <span style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:#a8412a">→ ENOUGH?</span>
@@ -220,7 +210,7 @@
       <section id="s3" style="display:flex;flex-direction:column;gap:26px;padding-top:52px;scroll-margin-top:-44px">
         <h2 style="margin:0;display:flex;flex-direction:column;gap:16px;border-top:2px solid #171512;padding-top:22px;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(26px,22.4px + .96vw,33px);line-height:1.5;color:#171512">
           <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.2em;color:#a8412a">① やり方</span>
-          何をすれば良くなるか
+          良くするために、何が効果的か
         </h2>
 
         <p style="margin:0">いきなり「AIでどうやるか」を考えると、AIの機能に発想が引っ張られて、アイデアが広がりません。先に考えるのは、どうすればその目的を効果的に達成できるかです。この時点では、AIをどう使うかは考えません。</p>
@@ -246,7 +236,9 @@
 
         <p style="margin:0">いきなり「資料作成のコツ」を調べると、目的とは関係のない、上手いやり方まで集まってしまいます。</p>
 
-        <p style="margin:0">調べるのは、AIの使い方よりも、その作業自体のやり方です。業界で実際に使われている工程や技法。そのとき、説明だけでなく<strong style="font-weight:700;color:#171512">用語</strong>で覚えておくと効果的です。</p>
+        <p style="margin:0">調べるのは、AIの使い方よりも、その作業自体のやり方です。まずは、業界で実際に使われている工程や技法。さらに、自分や周囲ではあまり知られていなくても、研究や実務を通じて有効性が確認されている方法があるかもしれません。</p>
+
+        <p style="margin:0">そのとき、説明だけでなく<strong style="font-weight:700;color:#171512">用語</strong>で覚えておくと効果的です。</p>
 
         <p style="margin:0">「目的が何で、誰に向けて、どんな内容で」と毎回説明するよりも、「要件定義書を作りたい」の一言のほうが早い。用語を知っているだけで、指示を短くできます。</p>
 
@@ -396,7 +388,7 @@
 
       <section id="s6" style="display:flex;flex-direction:column;gap:26px;padding-top:52px;scroll-margin-top:-44px">
         <h2 style="margin:0;display:flex;flex-direction:column;gap:16px;border-top:2px solid #171512;padding-top:22px;font-family:'Noto Serif JP',serif;font-weight:700;font-size:clamp(26px,22.4px + .96vw,33px);line-height:1.5;color:#171512">
-          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.2em;color:#a8412a">06</span>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.2em;color:#a8412a">まとめ</span>
           できるかどうかは、自分で決めなくていい
         </h2>
 
@@ -408,6 +400,8 @@
           <span style="width:6px;height:6px;background:#a8412a;border-radius:50%;flex:none"></span>
           やってみるときのプロセス
         </h3>
+
+        <p style="margin:0">手順1・2で作業と目的を決めて、そこから先が3つの切り口です。</p>
 
         <div style="display:flex;flex-direction:column;gap:0">
           <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;padding:22px 0;border-top:1px solid #e4dacd">
@@ -423,6 +417,7 @@
           <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;padding:22px 0;border-top:1px solid #e4dacd">
             <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#a8412a;padding-top:4px">03</span>
             <div style="display:flex;flex-direction:column;gap:14px">
+              <span style="align-self:flex-start;padding:4px 10px;border:1px solid #e0d6c8;border-radius:999px;font-size:11px;letter-spacing:.06em;color:#a8412a">① やり方</span>
               <span style="font-size:clamp(15px,14.5px + .21vw,16px);line-height:1.9"><strong style="font-weight:700;color:#171512">AIのことはいったん忘れて、どこで詰まっているのか、どうすれば良くなるのかを考えます。</strong> 思いつかなければ、そのまま送ってしまって大丈夫です</span>
               <span style="padding:16px 20px;background:#f1ece3;border-radius:2px;font-family:'Noto Serif JP',serif;font-size:clamp(14px,13.5px + .21vw,15px);line-height:1.9;color:#332e28">「〜したいんだけど、それに対して効果的な方法ある？」</span>
             </div>
@@ -430,6 +425,7 @@
           <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;padding:22px 0;border-top:1px solid #e4dacd">
             <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#a8412a;padding-top:4px">04</span>
             <div style="display:flex;flex-direction:column;gap:14px">
+              <span style="align-self:flex-start;padding:4px 10px;border:1px solid #e0d6c8;border-radius:999px;font-size:11px;letter-spacing:.06em;color:#a8412a">② 組み合わせ</span>
               <span style="font-size:clamp(15px,14.5px + .21vw,16px);line-height:1.9"><strong style="font-weight:700;color:#171512">やり方が見えたら、そのどこをAIに任せられるか考えます。</strong> 自分でやりにくいところや、何度も繰り返すところから。1つのAIで足りなさそうなら、分け方から聞いてしまいます</span>
               <span style="padding:16px 20px;background:#f1ece3;border-radius:2px;font-family:'Noto Serif JP',serif;font-size:clamp(14px,13.5px + .21vw,15px);line-height:1.9;color:#332e28">「〜したいんだけど、どういうツールや手段を使って、どんな流れにするのがいいかな？」</span>
             </div>
@@ -437,13 +433,14 @@
           <div style="display:grid;grid-template-columns:44px minmax(0,1fr);gap:18px;padding:22px 0;border-top:1px solid #e4dacd;border-bottom:1px solid #e4dacd">
             <span style="font-family:'JetBrains Mono',monospace;font-size:13px;color:#a8412a;padding-top:4px">05</span>
             <div style="display:flex;flex-direction:column;gap:14px">
+              <span style="align-self:flex-start;padding:4px 10px;border:1px solid #e0d6c8;border-radius:999px;font-size:11px;letter-spacing:.06em;color:#a8412a">③ 事例</span>
               <span style="font-size:clamp(15px,14.5px + .21vw,16px);line-height:1.9"><strong style="font-weight:700;color:#171512">それでも進まなければ、同じことをやった人がいないか調べます</strong></span>
               <span style="padding:16px 20px;background:#f1ece3;border-radius:2px;font-family:'Noto Serif JP',serif;font-size:clamp(14px,13.5px + .21vw,15px);line-height:1.9;color:#332e28">「AIを使って〜したいんだけど、実際にやった人の事例を調べて。どういう手順で、何を使ったのかと、うまくいかなかった点や、途中で変えたところも知りたい」</span>
             </div>
           </div>
         </div>
 
-        <p style="margin:0">全部やる必要はありません。手順3で足りることも多いです。</p>
+        <p style="margin:0">全部やる必要はありません。①だけで足りることも多いですし、思いつかないなら③から入って、人のやり方を借りてしまってもいいと思います。</p>
 
         <p style="margin:0">「これ、AIでうまくやる方法ないかな」くらいの軽さで十分です。失敗しても困らないところで何回か試して、慣れてから業務に持ち込むほうが、たぶん早いと思います。</p>
 
@@ -501,12 +498,12 @@
 <script type="text/x-dc" data-dc-script data-props="{&quot;showToc&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;showProgress&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;表示&quot;},&quot;readingMinutes&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:8,&quot;min&quot;:1,&quot;max&quot;:40,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;表示&quot;}}">
 class Component extends DCLogic {
   static SECTIONS = [
-    { id: "s1", num: "01", label: "できることは、使う人によって変わる" },
-    { id: "s2", num: "02", label: "考えることは1つ、切り口は3つ" },
-    { id: "s3", num: "03", label: "① やり方：何をすれば良くなるか" },
-    { id: "s4", num: "04", label: "② 組み合わせ：何を使って、どう分けるか" },
-    { id: "s5", num: "05", label: "③ 事例：誰かがすでにやっていないか" },
-    { id: "s6", num: "06", label: "できるかどうかは、自分で決めなくていい" }
+    { id: "s1", num: "－", label: "できることは、使う人によって変わる" },
+    { id: "s2", num: "－", label: "考えることは1つ、切り口は3つ" },
+    { id: "s3", num: "①", label: "やり方：良くするために、何が効果的か" },
+    { id: "s4", num: "②", label: "組み合わせ：何を使って、どう分けるか" },
+    { id: "s5", num: "③", label: "事例：誰かがすでにやっていないか" },
+    { id: "s6", num: "－", label: "できるかどうかは、自分で決めなくていい" }
   ];
   state = { progress: "0%", narrow: false, menuOpen: false, current: -1, read: 0, justRead: -1 };
   componentDidMount() {

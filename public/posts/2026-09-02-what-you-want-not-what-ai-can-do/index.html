@@ -59,6 +59,10 @@
         </div>
       </div>
       <div style="display:flex;flex-direction:column;gap:0">
+        <a href="#" onClick="{{ goTop }}" style="display:flex;gap:14px;padding:13px 2px;font-size:14px;line-height:1.7;color:#171512;font-weight:700;text-decoration:none;border-top:1px solid #ece3d6" style-hover="color:#a8412a">
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#c0b6aa">↑</span>
+          <span>AI活用は「何ができるか」ではなく「何をしたいか」</span>
+        </a>
         <sc-for list="{{ tocItems }}" as="item" hint-placeholder-count="6">
           <a href="{{ item.href }}" onClick="{{ item.go }}" style="display:flex;gap:14px;padding:13px 2px;font-size:14px;line-height:1.7;color:{{ item.color }};font-weight:{{ item.weight }};text-decoration:none;border-top:1px solid #ece3d6" style-hover="color:#a8412a">
             <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:{{ item.markColor }}">{{ item.mark }}</span>
@@ -498,6 +502,10 @@
           <button type="button" onClick="{{ resetRead }}" title="読了記録をリセット" style="margin-left:auto;width:26px;height:26px;display:flex;align-items:center;justify-content:center;background:transparent;border:1px solid #e4dacd;border-radius:50%;color:#8a8178;font-size:12px;line-height:1;cursor:pointer" style-hover="border-color:#a8412a;color:#a8412a">↺</button>
         </div>
         <div style="display:flex;flex-direction:column;gap:2px">
+          <a href="#" onClick="{{ goTop }}" style="display:flex;gap:10px;padding:9px 8px 9px 10px;font-size:13px;line-height:1.7;color:#171512;font-weight:700;text-decoration:none;border-left:2px solid #171512" style-hover="color:#a8412a">
+            <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:#c0b6aa;flex:none;padding-top:3px">↑</span>
+            <span>AI活用は「何ができるか」ではなく「何をしたいか」</span>
+          </a>
           <sc-for list="{{ tocItems }}" as="item" hint-placeholder-count="6">
             <a href="{{ item.href }}" onClick="{{ item.go }}" style="display:flex;gap:10px;padding:9px 8px 9px 10px;font-size:13px;line-height:1.7;color:{{ item.color }};font-weight:{{ item.weight }};text-decoration:none;border-left:2px solid {{ item.rail }};background:{{ item.flash }};transition:color .25s ease,border-color .35s ease,background .6s ease" style-hover="color:#a8412a">
               <span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:{{ item.markColor }};flex:none;padding-top:3px;transition:color .3s ease">{{ item.mark }}</span>
@@ -629,6 +637,11 @@ class Component extends DCLogic {
       },
       progress: this.props.showProgress === false ? "0%" : this.state.progress,
       figWidth: this.state.narrow ? "100%" : "min(740px, calc(100vw - 56px))",
+      goTop: (e) => {
+        if (e) { e.preventDefault(); e.stopPropagation(); }
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        this.setState({ menuOpen: false });
+      },
       showToc: (this.props.showToc ?? true) && !this.state.narrow,
       narrowToc: false,
       menuOpen: this.state.menuOpen,

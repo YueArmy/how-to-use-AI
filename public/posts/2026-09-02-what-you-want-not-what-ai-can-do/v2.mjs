@@ -1,0 +1,20 @@
+import { chromium } from 'playwright';
+const url='http://localhost:4321/posts/2026-09-02-what-you-want-not-what-ai-can-do/';
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const p=await b.newPage({viewport:{width:1280,height:900}});
+p.on('pageerror',e=>console.log('[err]',e.message));
+await p.goto(url,{waitUntil:'networkidle',timeout:60000}); await p.waitForTimeout(3500);
+console.log('title:', await p.title());
+console.log('h2:', await p.$$eval('h2', a=>a.length));
+console.log('imgs:', await p.$$eval('img', a=>a.map(i=>i.naturalWidth)));
+await p.evaluate(()=>{document.documentElement.style.scrollBehavior='auto';window.scrollTo(0,9000);});
+await p.waitForTimeout(1200);
+await p.screenshot({path:'/tmp/g-mid.png'});
+console.log('pct label:', await p.$$eval('span', a=>a.map(s=>s.textContent).filter(t=>/^\d+%$/.test(t))));
+const m=await b.newPage({viewport:{width:390,height:844},deviceScaleFactor:2});
+await m.goto(url,{waitUntil:'networkidle',timeout:60000}); await m.waitForTimeout(3000);
+console.log('mobile overflow:', await m.evaluate(()=>document.documentElement.scrollWidth>window.innerWidth));
+const btn=await m.$('button:has-text("目次")'); console.log('menu button:', !!btn);
+if(btn){await btn.click(); await m.waitForTimeout(600);} 
+await m.screenshot({path:'/tmp/g-mob.png'});
+await b.close();

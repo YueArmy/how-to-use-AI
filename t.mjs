@@ -1,0 +1,11 @@
+import { chromium } from 'playwright';
+const b=await chromium.launch({executablePath:'/opt/pw-browsers/chromium-1194/chrome-linux/chrome'});
+const p=await b.newPage({viewport:{width:1280,height:900}});
+p.on('pageerror',e=>console.log('[err]',e.message));
+p.on('requestfailed',r=>console.log('[fail]',r.url().slice(0,80)));
+await p.goto('http://localhost:4399/',{waitUntil:'networkidle',timeout:60000});
+await p.waitForTimeout(4000);
+console.log('h2s', await p.$$eval('h2', a=>a.length));
+console.log('title', await p.title());
+await p.screenshot({path:'/tmp/z-top.png'});
+await b.close();

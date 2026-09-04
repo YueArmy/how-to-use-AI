@@ -1,9 +1,12 @@
 ---
 import '../styles/global.css';
 
+// base（/how-to-use-AI/）を前置きする。ローカルでも本番でも同じURLになる
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const posts = [
   {
-    url: '/posts/2026-09-02-what-you-want-not-what-ai-can-do/',
+    url: base + '/posts/2026-09-02-what-you-want-not-what-ai-can-do/',
     title: 'AI活用は「何ができるか」ではなく「何をしたいか」',
     description:
       'AIの側から入ると、活用方法の一覧の中から自分に当てはまるものを探すことになります。業務のほうから入る——「やり方」「組み合わせ」「事例」の3つの切り口で、実際にどう考えたかを書きます。',

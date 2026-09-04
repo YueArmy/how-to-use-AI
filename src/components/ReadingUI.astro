@@ -1,0 +1,239 @@
+---
+const { slug } = Astro.props;
+---
+
+<div class="topbar" aria-hidden="true"><span id="topbar-fill"></span></div>
+
+<nav class="rail" aria-label="セクション">
+  <div class="rail-head">
+    <svg class="ring" viewBox="0 0 32 32" aria-hidden="true">
+      <circle class="ring-bg" cx="16" cy="16" r="14"></circle>
+      <circle class="ring-fg" cx="16" cy="16" r="14" id="ring-fg"></circle>
+    </svg>
+    <div class="rail-count">
+      <b><span id="read-n">0</span>/<span id="read-t">0</span></b>
+      <span>SECTIONS</span>
+    </div>
+    <button type="button" id="rail-reset" title="読了記録をリセット" aria-label="読了記録をリセット">↺</button>
+  </div>
+  <ol id="rail-list"></ol>
+</nav>
+
+<script define:vars={{ slug }}>
+  function init() {
+    const KEY = `htua:${slug}`;
+    const store = JSON.parse(localStorage.getItem(KEY) || '{}');
+    store.sections = store.sections || {};
+    store.steps = store.steps || {};
+    const save = () => localStorage.setItem(KEY, JSON.stringify(store));
+
+    /* ---------- セクション ---------- */
+    const heads = [...document.querySelectorAll('.prose h2')];
+    const list = document.getElementById('rail-list');
+    const ring = document.getElementById('ring-fg');
+    const C = 2 * Math.PI * 14;
+    ring.style.strokeDasharray = C;
+
+    document.getElementById('read-t').textContent = heads.length;
+
+    heads.forEach((h, i) => {
+      if (!h.id) h.id = 's' + (i + 1);
+      const li = document.createElement('li');
+      li.innerHTML =
+        `<a href="#${h.id}"><i>${String(i + 1).padStart(2, '0')}</i><span>${h.textContent}</span></a>`;
+      list.appendChild(li);
+    });
+
+    function paint() {
+      const n = heads.filter((h) => store.sections[h.id]).length;
+      document.getElementById('read-n').textContent = n;
+      ring.style.strokeDashoffset = C * (1 - (heads.length ? n / heads.length : 0));
+      [...list.children].forEach((li, i) =>
+        li.classList.toggle('read', !!store.sections[heads[i].id])
+      );
+    }
+
+    /* ---------- スクロール ---------- */
+    const fill = document.getElementById('topbar-fill');
+
+    function onScroll() {
+      const doc = document.documentElement;
+      const total = doc.scrollHeight - window.innerHeight;
+      fill.style.width = (total > 0 ? Math.min(100, (window.scrollY / total) * 100) : 0) + '%';
+
+      let active = -1, changed = false;
+      heads.forEach((h, i) => {
+        const top = h.getBoundingClientRect().top;
+        if (top < window.innerHeight * 0.4) active = i;
+        const end = i + 1 < heads.length
+          ? heads[i + 1].getBoundingClientRect().top
+          : doc.scrollHeight - window.scrollY;
+        if (end < window.innerHeight * 0.6 && !store.sections[h.id]) {
+          store.sections[h.id] = true;
+          changed = true;
+        }
+      });
+      [...list.children].forEach((li, i) => li.classList.toggle('on', i === active));
+      if (changed) { save(); paint(); }
+    }
+
+    document.getElementById('rail-reset').addEventListener('click', () => {
+      store.sections = {}; store.steps = {}; save(); paint();
+      document.querySelectorAll('.check').forEach((b) => {
+        b.classList.remove('on');
+        b.closest('li').classList.remove('done');
+      });
+      document.dispatchEvent(new Event('htua:recount'));
+    });
+
+    /* ---------- プロセスのチェックリスト ---------- */
+    const procHead = [...document.querySelectorAll('.prose h3')]
+      .find((h) => h.textContent.includes('プロセス'));
+
+    if (procHead) {
+      let ol = procHead.nextElementSibling;
+      while (ol && ol.tagName !== 'OL') ol = ol.nextElementSibling;
+
+      if (ol) {
+        ol.classList.add('checklist');
+        const counter = document.createElement('p');
+        counter.className = 'checklist-count';
+        ol.after(counter);
+
+        const items = [...ol.children];
+        const update = () => {
+          const n = items.filter((_, i) => store.steps['s' + i]).length;
+          counter.textContent = `${n} / ${items.length} 試した`;
+          counter.classList.toggle('done', n === items.length);
+        };
+        document.addEventListener('htua:recount', update);
+
+        items.forEach((li, i) => {
+          const box = document.createElement('button');
+          box.type = 'button';
+          box.className = 'check';
+          box.setAttribute('aria-label', `手順${i + 1}を試した`);
+          const sync = () => {
+            const on = !!store.steps['s' + i];
+            box.classList.toggle('on', on);
+            li.classList.toggle('done', on);
+            box.setAttribute('aria-pressed', String(on));
+          };
+          box.addEventListener('click', () => {
+            store.steps['s' + i] = !store.steps['s' + i];
+            save(); sync(); update();
+          });
+          li.prepend(box);
+          sync();
+        });
+        update();
+      }
+    }
+
+    paint();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    onScroll();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else { init(); }
+</script>
+
+<style is:global>
+  .topbar {
+    position: fixed; inset: 0 0 auto 0; height: 3px;
+    background: rgba(29, 27, 24, 0.06); z-index: 50;
+  }
+  .topbar span {
+    display: block; height: 100%; width: 0;
+    background: linear-gradient(90deg, var(--accent), var(--accent-soft));
+    transition: width 0.1s linear;
+  }
+
+  .rail {
+    position: sticky; top: 64px;
+    padding: 152px 0 40px;
+    display: flex; flex-direction: column; gap: 18px;
+  }
+
+  .rail-head { display: flex; align-items: center; gap: 10px; }
+
+  .ring { width: 26px; height: 26px; transform: rotate(-90deg); flex: none; }
+  .ring circle { fill: none; stroke-width: 2.5; }
+  .ring-bg { stroke: var(--line); }
+  .ring-fg {
+    stroke: var(--accent);
+    transition: stroke-dashoffset 0.4s ease;
+  }
+
+  .rail-count { font-family: var(--mono); line-height: 1.3; }
+  .rail-count b { display: block; font-size: 13px; color: var(--ink); font-weight: 700; }
+  .rail-count span { font-size: 9.5px; letter-spacing: 0.14em; color: var(--muted-light); }
+
+  #rail-reset {
+    margin-left: auto; width: 26px; height: 26px;
+    display: flex; align-items: center; justify-content: center;
+    background: transparent; border: 1px solid var(--line);
+    border-radius: 50%; color: var(--muted-light);
+    font-size: 12px; cursor: pointer; transition: all 0.2s;
+  }
+  #rail-reset:hover { color: var(--accent); border-color: var(--accent); }
+
+  .rail ol { list-style: none; padding: 0; border-left: 1px solid var(--line-soft); }
+  .rail li { margin: 0; }
+  .rail a {
+    display: flex; gap: 9px; padding: 7px 0 7px 14px;
+    margin-left: -1px; border-left: 2px solid transparent;
+    font-size: 11.5px; line-height: 1.6;
+    color: var(--muted-light); text-decoration: none;
+    transition: all 0.2s;
+  }
+  .rail a i {
+    font-family: var(--mono); font-style: normal;
+    font-size: 9.5px; padding-top: 2px; opacity: 0.6; flex: none;
+  }
+  .rail li.read a { color: var(--body-soft); }
+  .rail li.read a i { color: var(--accent); opacity: 1; }
+  .rail li.on a { color: var(--ink); border-left-color: var(--accent); font-weight: 700; }
+  .rail a:hover { color: var(--ink); }
+
+  @media (max-width: 900px) { .rail { display: none; } }
+
+  /* ---------- checklist ---------- */
+  .prose ol.checklist { list-style: none; padding-left: 0; }
+  .prose ol.checklist > li {
+    position: relative;
+    padding: 18px 22px 18px 54px;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .prose ol.checklist > li + li { margin-top: 12px; }
+  .prose ol.checklist > li.done { background: var(--accent-tint); border-color: transparent; }
+  .prose ol.checklist > li blockquote { margin-top: 14px; background: var(--bg); }
+
+  .check {
+    position: absolute; left: 20px; top: 21px;
+    width: 22px; height: 22px; padding: 0;
+    border: 1.5px solid var(--line-strong); border-radius: 50%;
+    background: transparent; cursor: pointer; transition: all 0.15s;
+  }
+  .check:hover { border-color: var(--accent); }
+  .check.on { background: var(--accent); border-color: var(--accent); }
+  .check.on::after {
+    content: ""; position: absolute; left: 7px; top: 3px;
+    width: 5px; height: 10px;
+    border: solid var(--surface); border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .checklist-count {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: 0.08em; color: var(--muted-light);
+    text-align: right; margin-top: 12px !important;
+  }
+  .checklist-count.done { color: var(--accent); }
+</style>

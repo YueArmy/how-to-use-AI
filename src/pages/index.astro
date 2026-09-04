@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+
+const mods = import.meta.glob('./posts/*.md', { eager: true });
+const posts = Object.values(mods)
+  .map((m) => ({ ...m.frontmatter, url: m.url }))
+  .sort((a, b) => (a.date < b.date ? 1 : -1));
+---
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI PRACTICE / NOTES</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Noto+Serif+JP:wght@700&family=JetBrains+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="masthead">
+        <p class="eyebrow">AI PRACTICE / NOTES</p>
+        <h1><span>実際にやったことを</span><span class="hl">もとに書いています</span></h1>
+        <p class="lede">
+          AI活用について、自分がどう考えて、どう手を動かしたか。うまくいかなかったところも含めて残していきます。
+        </p>
+        <div class="meta"><span class="mono">{posts.length} POSTS</span></div>
+      </header>
+
+      <ul class="index">
+        {posts.map((p, i) => (
+          <li>
+            <a href={p.url}>
+              <span class="n">{String(posts.length - i).padStart(2, '0')}</span>
+              <span class="body">
+                <span class="t">{p.title}</span>
+                {p.description && <span class="d">{p.description}</span>}
+                <span class="m">{p.date} ／ 約{p.minutes}分</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <style>
+      .index { list-style: none; padding: 0; margin: 8px 0 120px; }
+      .index li { border-bottom: 1px solid var(--line-soft); }
+      .index a {
+        display: flex; gap: 22px; padding: 32px 0;
+        text-decoration: none; color: inherit;
+      }
+      .n {
+        font-family: var(--mono); font-size: 11px; color: var(--muted-light);
+        padding-top: 8px; flex: none;
+      }
+      .body { display: flex; flex-direction: column; gap: 10px; max-width: 34em; }
+      .t {
+        font-family: var(--serif); font-weight: 700;
+        font-size: clamp(20px, 2.2vw, 26px); line-height: 1.6; color: var(--ink);
+        transition: color 0.2s;
+      }
+      .index a:hover .t { color: var(--accent); }
+      .d { font-size: 14.5px; line-height: 1.95; color: var(--body-soft); }
+      .m {
+        font-family: var(--mono); font-size: 11px;
+        letter-spacing: 0.08em; color: var(--muted-light);
+      }
+    </style>
+  </body>
+</html>

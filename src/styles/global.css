@@ -1,0 +1,204 @@
+/* ============================================================
+   how-to-use-ai — design tokens
+   Claude Design で作った standalone 版から抽出
+   ============================================================ */
+
+:root {
+  /* surfaces */
+  --bg:            #f7f4ef;
+  --surface:       #fffdfa;
+  --surface-warm:  #f1ece3;
+  --surface-dark:  #171512;
+
+  /* ink */
+  --ink:           #171512;
+  --body:          #2a2723;
+  --body-soft:     #4c4741;
+  --muted:         #6b645b;
+  --muted-light:   #8a8178;
+
+  /* accent */
+  --accent:        #a8412a;
+  --accent-soft:   #c9714f;
+  --accent-tint:   #f4dcd3;
+
+  /* lines */
+  --line:          #e4dacd;
+  --line-soft:     #e9e0d3;
+  --line-strong:   #ddd3c6;
+  --rule:          #c9beb2;
+
+  --max:           1080px;
+  --measure:       38em;
+
+  --serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --sans:  "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", sans-serif;
+  --mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-family: var(--sans);
+  font-size: clamp(16px, 15.5px + 0.21vw, 17px);
+  line-height: 1.95;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- layout ---------- */
+
+.shell {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+.columns {
+  margin-top: 8px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 232px;
+  gap: 56px;
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .columns { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .shell { padding: 0 20px; }
+}
+
+/* ---------- header ---------- */
+
+.masthead {
+  padding: 88px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+}
+
+.eyebrow {
+  display: flex; align-items: center; gap: 14px;
+  font-family: var(--mono);
+  font-size: 12px; letter-spacing: 0.16em;
+  color: var(--muted-light);
+}
+.eyebrow::before {
+  content: ""; width: 26px; height: 1px; background: var(--rule);
+}
+
+.masthead h1 {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(34px, 5.4vw, 64px);
+  line-height: 1.42;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  text-wrap: pretty;
+  max-width: 20em;
+}
+.masthead h1 span { display: block; }
+.masthead h1 span + span { margin-left: -0.5em; }
+.masthead h1 .hl { color: var(--accent); }
+
+.lede {
+  max-width: 30em;
+  font-size: clamp(17px, 15.9px + 0.28vw, 19px);
+  line-height: 2.05;
+  color: var(--body-soft);
+  text-wrap: pretty;
+}
+
+.meta {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 20px;
+  padding-bottom: 34px;
+  font-size: 13px; letter-spacing: 0.06em; color: var(--muted);
+  border-bottom: 1px solid var(--line-soft);
+}
+.meta .mono { font-family: var(--mono); }
+.meta .sep { width: 1px; height: 12px; background: var(--line-strong); }
+
+/* ---------- prose ---------- */
+
+.prose { padding-bottom: 24px; }
+
+.prose > * + * { margin-top: 26px; }
+
+.prose h2 {
+  margin-top: 52px;
+  border-top: 2px solid var(--ink);
+  padding-top: 22px;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(26px, 22.4px + 0.96vw, 33px);
+  line-height: 1.55;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  scroll-margin-top: 24px;
+}
+
+.prose h3 {
+  margin-top: 34px;
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: clamp(19px, 17.9px + 0.28vw, 21px);
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.prose p { max-width: var(--measure); text-wrap: pretty; }
+
+.prose strong { font-weight: 700; color: var(--ink); }
+
+.prose ul, .prose ol { padding-left: 1.5em; max-width: var(--measure); }
+.prose li + li { margin-top: 10px; }
+
+.prose blockquote {
+  max-width: var(--measure);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: 3px;
+  padding: 20px 24px;
+  font-size: 0.95em;
+  color: var(--body-soft);
+}
+
+.prose hr {
+  border: 0; border-top: 1px solid var(--line-soft); margin: 44px 0;
+}
+
+.prose a { color: var(--accent); }
+
+/* 本文中で使える強調ブロック */
+.callout {
+  background: var(--surface-dark);
+  color: #f1ece3;
+  border-radius: 4px;
+  padding: 28px 30px;
+  max-width: var(--measure);
+  font-size: 0.97em;
+}
+.callout strong { color: #fff; }
+
+.note {
+  background: var(--accent-tint);
+  border-radius: 3px;
+  padding: 18px 22px;
+  max-width: var(--measure);
+  font-size: 0.93em;
+  color: var(--body-soft);
+}
+
+/* ---------- footer ---------- */
+
+.post-footer {
+  margin-top: 64px;
+  padding: 36px 0 96px;
+  border-top: 1px solid var(--line-strong);
+  display: flex; flex-direction: column; gap: 14px;
+  font-size: 14px; color: var(--muted);
+}

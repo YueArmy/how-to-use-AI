@@ -1,6 +1,6 @@
 # how-to-use-ai
 
-AI活用コラムのWeb版。掲示板に投稿した記事を、読みやすい形で置いておくためのリポジトリ。
+AI活用コラムのWeb版。
 
 ## 使い方
 
@@ -8,44 +8,37 @@ AI活用コラムのWeb版。掲示板に投稿した記事を、読みやすい
 npm install
 npm run dev      # http://localhost:4321
 npm run build    # dist/ に静的生成
-npm run preview  # ビルド結果を確認
 ```
 
-## 記事の追加
+## 構成
 
-`src/pages/posts/` に `YYYY-MM-DD-slug.md` を置くだけ。frontmatter はこの形。
+- **記事本体** … `public/posts/<slug>/index.html`
+  Claude Design で作った standalone 版から、実行時に展開されるHTMLを取り出して静的化したもの。
+  デザインは standalone とそのまま同じ。
+- **画像** … `public/images/`（standalone に埋め込まれていた base64 を実ファイル化）
+- **一覧ページ** … `src/pages/index.astro`（記事リストは配列で管理）
+- `src/styles/global.css` … 一覧ページ用のデザイントークン
 
-```yaml
----
-layout: ../../layouts/PostLayout.astro
-title: "記事タイトル"
-titleLines:            # 見出しの改行位置を指定（省略可）
-  - "AI活用は"
-  - "「何ができるか」ではなく"
-  - "「何をしたいか」"
-highlightLast: true    # 最終行をアクセント色にする
-description: "リード文。一覧にも出る"
-date: "2026.09"
-minutes: 10
-category: "考え方 / 実践メモ"
-eyebrow: "AI PRACTICE / NOTES"
----
-```
+## 記事を追加するとき
 
-## 仕組み
+1. Claude Design で記事を作り、standalone HTML をエクスポート
+2. 展開して `public/posts/<slug>/index.html` に置く（手順は下記）
+3. `src/pages/index.astro` の `posts` 配列に1件足す
 
-- `src/styles/global.css` … デザイントークン（色・フォント・余白）。Claude Design で作った standalone 版から抽出
-- `src/layouts/PostLayout.astro` … 記事の外枠（見出し・メタ情報・フッター）
-- `src/components/ReadingUI.astro` … 上部プログレスバー、右側のセクションナビ、プロセスのチェックリスト
+### standalone HTML の展開について
 
-### 読了トラッキング
+エクスポートされる standalone は、巨大な base64 を実行時に展開するローダー形式になっている。
+そのままでも開けるが、17MB あって画像もフォントも埋め込まれているので、静的化してから置いている。
 
-- `h2` を1セクションとして数える
-- スクロールしてセクションを通過すると読了扱いになり、右上のリングが埋まる
-- 末尾の「やってみるときのプロセス」はチェックできる
-- 記録は localStorage（記事ごと）。右上の ↺ でリセット
+やっていること:
 
-## 注意
+- ヘッドレスブラウザで開いて、展開後のDOMを取り出す
+- 画像（blob）を `public/images/` に実ファイルとして書き出す
+- 埋め込みフォント（40MB）を捨てて、Google Fonts のリンクに差し替える
+- Claude Design ランタイム依存のスクリプトを、同じ挙動のバニラJSに置き換える
+- デスクトップ幅とモバイル幅の両方でDOMを取り、モバイル用のバーとメニューを合流させる
+- レスポンシブの切り替えをメディアクエリで再現する
 
-日本語で `**強調**` を書くとき、閉じる `**` の直後が日本語だと Markdown が太字として解釈しない。
-`<strong>〜</strong>` で書くのが確実。
+読了トラッキング（%表示・目次のチェック・リセット）は、standalone の
+`Component` クラスと同じロジックをバニラJSで書き直したもの。
+localStorage のキーは `ai-article-read`。

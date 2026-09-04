@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI活用は「何ができるか」ではなく「何をしたいか」</title>
+<meta name="description" content="AIの側から入ると、活用方法の一覧の中から自分に当てはまるものを探すことになります。業務のほうから入る——「やり方」「組み合わせ」「事例」の3つの切り口で、実際にどう考えたかを書きます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@400;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  html { scroll-padding-top: 24px; }
+  body { margin: 0; background: #f7f4ef; color: #1d1b18; -webkit-font-smoothing: antialiased; }
+  ::selection { background: #f2d9d0; }
+  a { color: #a8412a; text-decoration-color: rgba(168,65,42,.35); text-underline-offset: 3px; }
+  a:hover { color: #7d2e1c; text-decoration-color: rgba(168,65,42,.8); }
+  img { max-width: 100%; }
+
+  /* デスクトップではモバイル用のバーを隠す */
+  [data-ui="mbar"], [data-ui="scrim"] { display: none; }
+
+  @media (max-width: 860px) {
+    [data-ui="mbar"] { display: block; }
+    [data-ui="scrim"] { display: block; }
+    [data-ui="rail"] { display: none !important; }
+    [data-ui="grid"] {
+      grid-template-columns: minmax(0, 1fr) !important;
+      gap: 0 !important;
+    }
+    [data-ui="masthead"] { padding: 104px 20px 0 !important; }
+    [data-ui="grid"] { padding: 0 20px !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="dc-root"><div class="sc-host" data-sc-name="3ebe84de-AI__________standalone_10">
+<div data-ui="mbar" style="position: fixed; top: 3px; left: 0px; right: 0px; z-index: 49; font-family: &quot;Noto Sans JP&quot;, sans-serif; background: rgba(247, 244, 239, 0.88); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(221, 211, 198, 0.7);">
+  <div style="max-width: 1080px; margin: 0px auto; padding: 0px 20px; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 16px; position: relative;">
+    <div style="display: flex; align-items: center; gap: 12px; min-width: 0px; pointer-events: none; user-select: none;">
+      <span style="width: 7px; height: 7px; background: rgb(168, 65, 42); border-radius: 50%; flex: 0 0 auto;"></span>
+      <span style="font-size: 13px; letter-spacing: 0.02em; color: rgb(76, 71, 65); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">AI活用は「何ができるか」ではなく「何をしたいか」</span>
+    </div>
+    <div style="flex: 0 0 auto; display: flex; align-items: center; gap: 12px;">
+    <div style="position: relative; width: 34px; height: 34px; flex: 0 0 auto;">
+      <svg width="34" height="34" viewBox="0 0 30 30" style="position: absolute; inset: 0px; transform: rotate(-90deg);">
+        <circle cx="15" cy="15" r="13" fill="none" stroke="#e4dacd" stroke-width="2.5"></circle>
+        <circle cx="15" cy="15" r="13" fill="none" stroke="#a8412a" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="81.68" stroke-dashoffset="81.68" style="transition: stroke-dashoffset 0.25s linear;"></circle>
+      </svg>
+      <span style="position: absolute; inset: 0px; display: flex; align-items: center; justify-content: center; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 8.5px; color: rgb(23, 21, 18);">0%</span>
+    </div>
+    <button type="button" class="scp0" style="flex: 0 0 auto; display: flex; align-items: center; gap: 9px; padding: 9px 16px; background: rgb(23, 21, 18); color: rgb(243, 236, 226); border: 0px; border-radius: 999px; font-family: &quot;Noto Sans JP&quot;, sans-serif; font-size: 12px; letter-spacing: 0.1em; cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent;">
+      <span style="display: flex; flex-direction: column; gap: 3px;">
+        <span style="width: 12px; height: 1px; background: rgb(243, 236, 226); display: block;"></span>
+        <span style="width: 12px; height: 1px; background: rgb(243, 236, 226); display: block;"></span>
+        <span style="width: 8px; height: 1px; background: rgb(243, 236, 226); display: block;"></span>
+      </span>
+      目次
+    </button>
+    </div>
+
+  <div style="position: absolute; top: calc(100% + 10px); right: 20px; width: min(340px, -40px + 100vw); background: rgb(255, 253, 250); border: 1px solid rgb(228, 218, 205); border-radius: 3px; box-shadow: rgba(23, 21, 18, 0.28) 0px 28px 56px -22px; visibility: hidden; opacity: 0; transform: translateY(-8px); transition: opacity 0.18s, transform 0.18s, visibility 0.18s;">
+    <div style="padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 12px;">
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+        <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.2em; color: rgb(168, 158, 147);">CONTENTS</span>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(168, 65, 42);">0%</span>
+          <button type="button" class="scp1" style="display: flex; align-items: center; gap: 6px; min-height: 40px; padding: 0px 16px; background: transparent; border: 1px solid rgb(224, 214, 200); border-radius: 999px; color: rgb(107, 100, 91); font-family: &quot;Noto Sans JP&quot;, sans-serif; font-size: 12px; line-height: 1; cursor: pointer; touch-action: manipulation;"><span style="font-size: 12px;">↺</span>リセット</button>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 0px;">
+        
+          <a href="#s1" class="scp2" style="display: flex; gap: 14px; padding: 13px 2px; font-size: 14px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-top: 1px solid rgb(236, 227, 214);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(192, 182, 170);">01</span>
+            <span>できることは、使う人によって変わる</span>
+          </a>
+        
+          <a href="#s2" class="scp2" style="display: flex; gap: 14px; padding: 13px 2px; font-size: 14px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-top: 1px solid rgb(236, 227, 214);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(192, 182, 170);">02</span>
+            <span>考えることは1つ、切り口は3つ</span>
+          </a>
+        
+          <a href="#s3" class="scp2" style="display: flex; gap: 14px; padding: 13px 2px; font-size: 14px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-top: 1px solid rgb(236, 227, 214);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(192, 182, 170);">03</span>
+            <span>① やり方：何をすれば良くなるか</span>
+          </a>
+        
+          <a href="#s4" class="scp2" style="display: flex; gap: 14px; padding: 13px 2px; font-size: 14px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-top: 1px solid rgb(236, 227, 214);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(192, 182, 170);">04</span>
+            <span>② 組み合わせ：何を使って、どう分けるか</span>
+          </a>
+        
+          <a href="#s5" class="scp2" style="display: flex; gap: 14px; padding: 13px 2px; font-size: 14px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-top: 1px solid rgb(236, 227, 214);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(192, 182, 170);">05</span>
+            <span>③ 事例：誰かがすでにやっていないか</span>
+          </a>
+        
+          <a href="#s6" class="scp2" style="display: flex; gap: 14px; padding: 13px 2px; font-size: 14px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-top: 1px solid rgb(236, 227, 214);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(192, 182, 170);">06</span>
+            <span>できるかどうかは、自分で決めなくていい</span>
+          </a>
+        
+      </div>
+    </div>
+  </div>
+  </div></div>
+<div data-ui="scrim" style="position: fixed; inset: 0px; z-index: 48; background: rgba(23, 21, 18, 0.18); pointer-events: none; opacity: 0; transition: opacity 0.18s;"></div>
+<div data-ui="topbar" style="position: fixed; top: 0px; left: 0px; right: 0px; height: 3px; background: rgba(29, 27, 24, 0.06); z-index: 50;">
+  <div data-ui="topbar-fill" style="height: 100%; background: linear-gradient(90deg, rgb(168, 65, 42), rgb(201, 113, 79)); width: 0%;"></div></div><div style="font-family: &quot;Noto Sans JP&quot;, sans-serif; line-height: 1.95; letter-spacing: 0.02em; font-size: clamp(16px, 15.5px + 0.21vw, 17px); color: rgb(42, 39, 35);">
+
+  <header data-ui="masthead" style="max-width: 1080px; margin: 0px auto; padding: 88px 28px 0px; display: flex; flex-direction: column; gap: 38px;">
+    <div style="display: flex; align-items: center; gap: 14px; font-size: 12px; letter-spacing: 0.16em; color: rgb(138, 129, 120); font-family: &quot;JetBrains Mono&quot;, monospace;">
+      <span style="width: 26px; height: 1px; background: rgb(201, 190, 178);"></span>
+      <span>AI PRACTICE / NOTES</span>
+    </div>
+    <h1 style="margin: 0px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(34px, 5.4vw, 64px); line-height: 1.42; letter-spacing: -0.01em; color: rgb(23, 21, 18); text-wrap: pretty; max-width: 20em;">
+      <span style="display: block;">AI活用は</span>
+      <span style="display: block; margin-left: -0.5em;">「何ができるか」ではなく</span>
+      <span style="display: block; margin-left: -0.5em; color: rgb(168, 65, 42);">「何をしたいか」</span>
+    </h1>
+    <p style="margin: 0px; max-width: 30em; font-size: clamp(17px, 15.9px + 0.28vw, 19px); line-height: 2.05; color: rgb(76, 71, 65); text-wrap: pretty;">
+      AIの側から入ると、活用方法の一覧の中から自分に当てはまるものを探すことになります。業務のほうから入る——「やり方」「組み合わせ」「事例」の3つの切り口で、実際にどう考えたかを書きます。
+    </p>
+    <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 20px; padding: 0px 0px 34px; font-size: 13px; color: rgb(107, 100, 91); letter-spacing: 0.06em;">
+      <span style="font-family: &quot;JetBrains Mono&quot;, monospace;">2026.09</span>
+      <span style="width: 1px; height: 12px; background: rgb(213, 203, 191);"></span>
+      <span>読了 約8分</span>
+      <span style="width: 1px; height: 12px; background: rgb(213, 203, 191);"></span>
+      <span>考え方 / 実践メモ</span>
+    </div>
+    <figure style="margin: 0px 0px 40px; display: flex; flex-direction: column; gap: 12px;">
+      <img src="/images/img1.png" alt="机の上に広げた手書きの構成メモと付箋" style="width: 100%; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 2px; display: block;">
+      <figcaption style="font-size: 13px; line-height: 1.85; color: rgb(138, 129, 120);">AIに触る前に決めていたのは、誰に向けて、何を持ち帰ってほしいかだけだった。</figcaption>
+    </figure>
+  </header>
+
+  <div style="max-width: 1080px; margin: 0px auto; padding: 0px 28px;">
+    <div style="height: 1px; background: linear-gradient(90deg, rgb(221, 211, 198), rgba(221, 211, 198, 0));"></div>
+  </div>
+
+  <div style="max-width: 1080px; margin: 0px auto; padding: 0px 28px; display: grid; grid-template-columns: minmax(0px, 1fr) 220px; gap: 64px; align-items: start;">
+
+    <main style="max-width: 41em; padding: 56px 0px 40px; display: flex; flex-direction: column; gap: 26px;">
+
+      <p style="margin: 0px;">「AIを活用しましょう」と言われたとき、こう思いませんか。</p>
+
+      <div style="display: flex; flex-direction: column; gap: 12px; padding: 26px 30px; background: rgb(255, 253, 250); border: 1px solid rgb(233, 224, 211); border-radius: 2px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(17px, 15.4px + 0.43vw, 19px); line-height: 1.9; color: rgb(59, 54, 48);">
+        <div>「活用と言われても、結局どうすればいいの？」</div>
+        <div>「そもそもAIって、何ができるの？」</div>
+      </div>
+
+      <p style="margin: 0px;">この2つの問いは、どちらもAIの側から始まっています。AIの側から入ると、活用方法の一覧を見て、その中から自分に当てはまるものを探すことになります。数が多いわりに、自分の仕事とはなかなかつながりません。</p>
+
+      <p style="margin: 0px;">私は普段からAIを使うほうですが、差があるとすれば、スキルではなく考え方だと思っています。やっていたのは、その逆でした。AIではなく、業務のほうから入る。「何をしたいか」を先に決めて、そこから「それをAIでどう実現するか」を考えています。</p>
+
+      <p style="margin: 0px;">ここでいう「やりたいこと」は、新しく何かを始めることではありません。新しいことを始めようとすると、それ自体が負担になってしまいます。今やっている作業の目的を、もっと効果的に、もっと効率よく達成できないか。考えるのはそれだけです。</p>
+
+      <p style="margin: 0px;">今回は、その考え方をもとに、実際にどう考えたかを「やり方」「組み合わせ」「事例」の3つに分けて書きます。読み終えたときに、「で、どうすればいいの」で止まることが減っていればと思います。</p>
+
+      <section id="s1" style="display: flex; flex-direction: column; gap: 26px; padding-top: 52px; scroll-margin-top: -44px;">
+        <h2 style="margin: 0px; display: flex; flex-direction: column; gap: 16px; border-top: 2px solid rgb(23, 21, 18); padding-top: 22px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(26px, 22.4px + 0.96vw, 33px); line-height: 1.5; color: rgb(23, 21, 18); letter-spacing: -0.005em;">
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: rgb(168, 65, 42);">01</span>
+          できることは、使う人によって変わる
+        </h2>
+
+        <p style="margin: 0px;">私は、<strong style="font-weight: 700; color: rgb(23, 21, 18); background: linear-gradient(transparent 62%, rgb(244, 220, 211) 62%);">「AIは基本的に何でもできる」</strong>と思っています。</p>
+
+        <p style="margin: 0px;">もちろん、実際にはできないこともあります。ただ、やってみてできなかったときに「やっぱり無理か」で終わらず、失敗した原因を分析して、「じゃあ、どうすればできるんだろう」と考える。違いはそこだけかもしれません。</p>
+
+        <p style="margin: 0px;">「だいたいできる」と思っていると、自然と「何をしたいか」から考えるようになります。</p>
+
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: 30px 32px; background: rgb(23, 21, 18); border-radius: 2px; color: rgb(243, 236, 226);">
+          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.2em; color: rgb(217, 154, 127);">TRY THIS</div>
+          <p style="margin: 0px; font-size: clamp(16px, 14.9px + 0.28vw, 18px); line-height: 1.95;">今やっている作業の中で、「これ、面倒だな」「これができたらいいのに」と思っているものを一つ思い浮かべてみてください。AIでできるかどうかは、この時点では考えなくて大丈夫です。</p>
+        </div>
+
+        <p style="margin: 0px;">仕事のことでなくても構いません。むしろ最初は、趣味や家のことでもいいと思います。業務でいきなり使おうとすると、失敗できないぶん、手が止まりやすいからです。</p>
+      </section>
+
+      <section id="s2" style="display: flex; flex-direction: column; gap: 26px; padding-top: 52px; scroll-margin-top: -44px;">
+        <h2 style="margin: 0px; display: flex; flex-direction: column; gap: 16px; border-top: 2px solid rgb(23, 21, 18); padding-top: 22px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(26px, 22.4px + 0.96vw, 33px); line-height: 1.5; color: rgb(23, 21, 18);">
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: rgb(168, 65, 42);">02</span>
+          考えることは1つ、切り口は3つ
+        </h2>
+
+        <p style="margin: 0px;">考えることは1つだけです。「どうすれば、もっと効果的に、もっと効率よくできるか」。その答えを探す切り口が、3つに分かれます。順番に全部やる必要はありません。①で足りれば、そこで終わりです。</p>
+
+        <div style="display: flex; flex-direction: column; gap: 0px; padding: 30px 30px 34px; background: rgb(255, 253, 250); border: 1px solid rgb(233, 224, 211); border-radius: 2px;">
+          <div style="display: flex; flex-direction: column; gap: 4px; padding-bottom: 20px;">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.2em; color: rgb(168, 158, 147);">START</span>
+            <span style="font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(17px, 15.9px + 0.28vw, 19px); line-height: 1.7; color: rgb(23, 21, 18);">どうすれば、もっと効果的に、<br>もっと効率よくできるか</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 22px minmax(0px, 1fr); gap: 0px 18px;">
+            <div style="grid-row: 1 / span 2; display: flex; flex-direction: column; align-items: center;">
+              <span style="width: 22px; height: 22px; border-radius: 50%; background: rgb(168, 65, 42); color: rgb(255, 255, 255); font-size: 12px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">1</span>
+              <span style="flex: 1 1 0%; width: 1px; background: rgb(224, 214, 200);"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 5px; padding-bottom: 6px;">
+              <span style="font-weight: 700; font-size: 17px; color: rgb(23, 21, 18);">やり方</span>
+              <span style="font-size: 14px; line-height: 1.85; color: rgb(107, 100, 91);">何をすれば良くなるか</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 0px 0px 22px;">
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.14em; color: rgb(168, 65, 42);">→ ENOUGH?</span>
+              <span style="font-size: 12.5px; color: rgb(107, 100, 91);">足りれば、ここで終わり</span>
+            </div>
+
+            <div style="grid-row: 3 / span 2; display: flex; flex-direction: column; align-items: center;">
+              <span style="width: 22px; height: 22px; border-radius: 50%; background: rgb(168, 65, 42); color: rgb(255, 255, 255); font-size: 12px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">2</span>
+              <span style="flex: 1 1 0%; width: 1px; background: rgb(224, 214, 200);"></span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 5px; padding-bottom: 6px;">
+              <span style="font-weight: 700; font-size: 17px; color: rgb(23, 21, 18);">組み合わせ</span>
+              <span style="font-size: 14px; line-height: 1.85; color: rgb(107, 100, 91);">何を使って、どう分けるか</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px; padding: 0px 0px 22px;">
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; letter-spacing: 0.14em; color: rgb(168, 65, 42);">→ ENOUGH?</span>
+              <span style="font-size: 12.5px; color: rgb(107, 100, 91);">足りれば、ここで終わり</span>
+            </div>
+
+            <div style="display: flex; justify-content: center;">
+              <span style="width: 22px; height: 22px; border-radius: 50%; background: rgb(168, 65, 42); color: rgb(255, 255, 255); font-size: 12px; display: flex; align-items: center; justify-content: center; flex: 0 0 auto;">3</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <span style="font-weight: 700; font-size: 17px; color: rgb(23, 21, 18);">事例</span>
+              <span style="font-size: 14px; line-height: 1.85; color: rgb(107, 100, 91);">誰かがすでにやっていないか</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin: 0px;">ここからは、「AIでPowerPointを作りたい」を例に、実際に何をどう考えたかを書きます。先ほど思い浮かべたものに置き換えながら、読んでみてください。</p>
+      </section>
+
+      <section id="s3" style="display: flex; flex-direction: column; gap: 26px; padding-top: 52px; scroll-margin-top: -44px;">
+        <h2 style="margin: 0px; display: flex; flex-direction: column; gap: 16px; border-top: 2px solid rgb(23, 21, 18); padding-top: 22px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(26px, 22.4px + 0.96vw, 33px); line-height: 1.5; color: rgb(23, 21, 18);">
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: rgb(168, 65, 42);">① やり方</span>
+          何をすれば良くなるか
+        </h2>
+
+        <p style="margin: 0px;">いきなり「AIでどうやるか」を考えると、AIの機能に発想が引っ張られて、アイデアが広がりません。先に考えるのは、どうすればその目的を効果的に達成できるかです。この時点では、AIをどう使うかは考えません。</p>
+
+        <p style="margin: 0px;">コツは1つだけです。自分のスキルや知識を、いったん計算に入れないこと。「自分はデザインができないから」「文章が苦手だから」と先に線を引くと、そこで発想が止まります。考えるのは、「どうなっていれば良いか」だけです。</p>
+
+        <p style="margin: 0px;">資料作成なら、「読み手の関心がどう動くか」を踏まえて構成を組む。AIを使っても、ここは変わりません。</p>
+
+        <p style="margin: 0px;">私が自分で決めたのは、2つだけです。<strong style="font-weight: 700; color: rgb(23, 21, 18);">誰に向けたもので、読み終えたときにどうなっていてほしいか。</strong>それと、<strong style="font-weight: 700; color: rgb(23, 21, 18);">全体をどういう流れで見せるか。</strong>手法をいくつか知っていたので、それを使いました。</p>
+
+        <p style="margin: 0px;">実のところ、「研修をするので、資料の流れを考えて」といったシンプルな指示でも、それっぽいものは作れます。ただ、<strong style="font-weight: 700; color: rgb(23, 21, 18); background: linear-gradient(transparent 62%, rgb(244, 220, 211) 62%);">AIが作ったもの自体は良くても、目的には沿っていない。</strong>それでは意味がありません。</p>
+
+        <p style="margin: 0px;">だから、「<strong style="font-weight: 700; color: rgb(23, 21, 18);">この目的を達成するには、どういう情報が必要なのか</strong>」を、自分が作る前提で整理してから指示を出します。最終的なアウトプットをどうしたいのか。その抽象的な部分は、自分で持っています。</p>
+
+        <h3 style="margin: 26px 0px 0px; display: flex; align-items: center; gap: 12px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(19px, 17.9px + 0.28vw, 21px); line-height: 1.7; color: rgb(23, 21, 18);">
+          <span style="width: 6px; height: 6px; background: rgb(168, 65, 42); border-radius: 50%; flex: 0 0 auto;"></span>
+          分からないときの2つの手
+        </h3>
+
+        <p style="margin: 0px;">どういう要素が必要なのか、そもそも分からないこともあります。経験のない領域なら、そのほうが普通です。そんなときには、2つの手があります。</p>
+
+        <p style="margin: 0px;"><strong style="font-weight: 700; color: rgb(23, 21, 18);">1つは、調べること。</strong> ただし、調べる前に「そもそも今、何をしているんだっけ」「この作業の目的は何だっけ」と確認します。目的を整理したうえで、それを達成するために効果的な手段や方法は何か、そのやり方を調べます。</p>
+
+        <p style="margin: 0px;">いきなり「資料作成のコツ」を調べると、目的とは関係のない、上手いやり方まで集まってしまいます。</p>
+
+        <p style="margin: 0px;">調べるのは、AIの使い方よりも、その作業自体のやり方です。業界で実際に使われている工程や技法。そのとき、説明だけでなく<strong style="font-weight: 700; color: rgb(23, 21, 18);">用語</strong>で覚えておくと効果的です。</p>
+
+        <p style="margin: 0px;">「目的が何で、誰に向けて、どんな内容で」と毎回説明するよりも、「要件定義書を作りたい」の一言のほうが早い。用語を知っているだけで、指示を短くできます。</p>
+
+        <p style="margin: 0px;"><strong style="font-weight: 700; color: rgb(23, 21, 18);">もう1つは、分からないまま渡してしまうこと。</strong> 「目指したい状態」と「今の状態」。その2つを書いて、「どこに問題がありそうか、どうすればいいか」を聞きます。理想と現状を整理できれば、問題の特定と改善策はAIに提案してもらえます。</p>
+
+        <h3 style="margin: 26px 0px 0px; display: flex; align-items: center; gap: 12px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(19px, 17.9px + 0.28vw, 21px); line-height: 1.7; color: rgb(23, 21, 18);">
+          <span style="width: 6px; height: 6px; background: rgb(168, 65, 42); border-radius: 50%; flex: 0 0 auto;"></span>
+          任せる部分
+        </h3>
+
+        <p style="margin: 0px;">ここまでは、AIをどう使うかを考えていません。やり方が決まってから、そのどこをAIに任せるかを考えます。</p>
+
+        <p style="margin: 0px;">私が任せたのは、そこから先です。<strong style="font-weight: 700; color: rgb(23, 21, 18);">どういう感じで書きたいかだけを整理して渡し、あとの部分はいい感じに補完してもらう。</strong>そうやって下書きを作ってもらっています。「この部分は、こういうスライドにしたい」とだけ添えて、細かい中身までは書きませんでした。</p>
+
+        <p style="margin: 0px;">「こういうものを作りたい」という大枠だけを決めて、具体的な書き方や詳しい内容はAIに書いてもらったほうが、効率が良く、クオリティも高くなると思っています。出てきたものを見ながら、「ここはこうしたい」を足していきます。</p>
+
+        <p style="margin: 0px;">もう1つ任せたのが、自分以外の視点で見てもらうことでした。手法を知っていても、自分で書いたものがそのとおりになっているかは、自分では判断しにくい。ズレが見えないからです。</p>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 26px 30px; background: rgb(241, 236, 227); border-radius: 2px;">
+          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.2em; color: rgb(168, 65, 42);">PROMPT</div>
+          <p style="margin: 0px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(16px, 14.4px + 0.43vw, 19px); line-height: 1.95; color: rgb(51, 46, 40);">「〜という目的で、〜に向けて作っていて、今は〜という構成になっているんだけど、構成や具体的な内容についてどう思う？」</p>
+        </div>
+
+        <p style="margin: 0px;">ここでも、前提を先に渡します。目的に照らして判断してもらうためです。</p>
+
+        <p style="margin: 0px;">返ってきた提案は、そのまま全部使うのではなく、選んで取り入れました。知識があるほど的確に選べますが、知識がなくても始められます。</p>
+      </section>
+
+      <section id="s4" style="display: flex; flex-direction: column; gap: 26px; padding-top: 52px; scroll-margin-top: -44px;">
+        <h2 style="margin: 0px; display: flex; flex-direction: column; gap: 16px; border-top: 2px solid rgb(23, 21, 18); padding-top: 22px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(26px, 22.4px + 0.96vw, 33px); line-height: 1.5; color: rgb(23, 21, 18);">
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: rgb(168, 65, 42);">② 組み合わせ</span>
+          何を使って、どう分けるか
+        </h2>
+
+        <p style="margin: 0px;">組み合わせといっても、大がかりなものとは限りません。今の作業に何を足すか、何を分けるか。それだけでも組み合わせです。</p>
+
+        <p style="margin: 0px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(19px, 17.4px + 0.43vw, 22px); line-height: 1.85; color: rgb(23, 21, 18); padding: 22px 28px; background: rgb(241, 236, 227); border-left: 3px solid rgb(168, 65, 42);">ポイントは、1つのAIで全部やろうとしないことです。</p>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 26px 30px; background: rgb(241, 236, 227); border-radius: 2px;">
+          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.2em; color: rgb(168, 65, 42);">PROMPT</div>
+          <p style="margin: 0px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(16px, 14.4px + 0.43vw, 19px); line-height: 1.95; color: rgb(51, 46, 40);">「〜したいんだけど、どういうツールや手段を使って、どんな流れにするのがいいかな？」</p>
+        </div>
+
+        <p style="margin: 0px;">私の場合、最初は「何を書くか」を整理してもらったAIに、そのままPowerPointまで作らせようとしました。しかし、配置や色味がどうしてもうまくいきませんでした。</p>
+
+        <p style="margin: 0px;">そこで、「デザインの下書きだけ、別で作れないか」と考えました。画像生成でラフを1枚作り、それを見せながら組み直す。工程を1つ増やしただけで、そのまま使える形になりました。</p>
+
+        <figure style="margin: 0px; display: flex; flex-direction: column; gap: 12px;">
+          <img src="/images/img2.png" alt="画像生成で作成したスライドのラフ案" style="width: 100%; object-fit: contain; border: 1px solid rgb(233, 224, 211); border-radius: 2px; display: block; background: rgb(255, 253, 250);">
+          <figcaption style="font-size: 13px; line-height: 1.85; color: rgb(138, 129, 120);">実際に生成したラフ。これを見せながら組み直した。</figcaption>
+        </figure>
+
+        <p style="margin: 0px;">「惜しいな」で済むときは、伝え方を変えれば、だいたい解決します。何度か条件を変えて試しても「全然違うな」が続くときは、そもそも、その作業がそのAIに向いていないのかもしれません。そのときは、指示ではなく、組み合わせのほうを変えます。</p>
+
+        <p style="margin: 0px;">ここから先は、何度か試してみたあとの話です。</p>
+
+        <p style="margin: 0px;">AIの使い方も、チャット欄でやり取りするだけではありません。</p>
+
+        <div style="display: flex; flex-direction: column; gap: 2px; background: rgb(233, 224, 211); border: 1px solid rgb(233, 224, 211); border-radius: 2px; overflow: hidden;">
+          <div style="display: flex; gap: 16px; padding: 20px 24px; background: rgb(255, 253, 250); align-items: baseline;">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(168, 65, 42); letter-spacing: 0.1em; flex: 0 0 auto;">01</span>
+            <span style="font-size: clamp(15px, 14.5px + 0.21vw, 16px); line-height: 1.9;">よく使う前提をまとめて置いておける<strong style="font-weight: 700; color: rgb(23, 21, 18);">「プロジェクト」機能</strong></span>
+          </div>
+          <div style="display: flex; gap: 16px; padding: 20px 24px; background: rgb(255, 253, 250); align-items: baseline;">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; color: rgb(168, 65, 42); letter-spacing: 0.1em; flex: 0 0 auto;">02</span>
+            <span style="font-size: clamp(15px, 14.5px + 0.21vw, 16px); line-height: 1.9;">他のサービスとつなぐ<strong style="font-weight: 700; color: rgb(23, 21, 18);">「コネクタ（アプリ）」</strong></span>
+          </div>
+        </div>
+
+        <p style="margin: 0px;">「やりたいことに応じて履歴やデータを管理したい」「AIの機能を拡張したい」といった場合には、これらの機能を使ってみると良いです。</p>
+
+        <p style="margin: 0px;">同じ作業を何度も繰り返すなら、毎回ゼロから頼まなくて済むように、目的や手順、守りたいルールをまとめて登録しておく「スキル」機能を使うところまで進むこともあります。ただ、最初からそこまでやる必要はありません。</p>
+      </section>
+
+      <section id="s5" style="display: flex; flex-direction: column; gap: 26px; padding-top: 52px; scroll-margin-top: -44px;">
+        <h2 style="margin: 0px; display: flex; flex-direction: column; gap: 16px; border-top: 2px solid rgb(23, 21, 18); padding-top: 22px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(26px, 22.4px + 0.96vw, 33px); line-height: 1.5; color: rgb(23, 21, 18);">
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: rgb(168, 65, 42);">③ 事例</span>
+          誰かがすでにやっていないか
+        </h2>
+
+        <p style="margin: 0px;">①と②は、自分の中で考える作業です。思いつくものがないと、そこで止まってしまいます。</p>
+
+        <p style="margin: 0px;">思いつかないときは、調べます。調べる対象は、AIに何ができるかではありません。同じことをやった人が、どうやったかです。</p>
+
+        <div style="display: flex; flex-direction: column; gap: 12px; padding: 26px 30px; background: rgb(241, 236, 227); border-radius: 2px;">
+          <div style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.2em; color: rgb(168, 65, 42);">PROMPT</div>
+          <p style="margin: 0px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(16px, 14.4px + 0.43vw, 19px); line-height: 1.95; color: rgb(51, 46, 40);">「AIを使って〜したいんだけど、実際にやった人の事例を調べて。どういう手順で、何を使ったのかと、うまくいかなかった点や、途中で変えたところも知りたい」</p>
+        </div>
+
+        <p style="margin: 0px;">最後の一文が大事です。成功談だけを集めても、あまり使えません。「ここで詰まって、こう変えた」という情報のほうが、実際に試すときの判断材料になるからです。</p>
+
+        <p style="margin: 0px;">この記事を書くときに、実際に調べてみました。出てきた事例に共通していたのは、次のような流れです。</p>
+
+        <div style="display: flex; flex-direction: column; gap: 14px; padding: 28px 30px 30px; background: rgb(255, 253, 250); border: 1px solid rgb(233, 224, 211); border-radius: 2px;">
+          <div style="display: grid; grid-template-columns: repeat(4, minmax(0px, 1fr)); gap: 8px;">
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+              <span style="height: 3px; background: rgb(23, 21, 18);"></span>
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 9.5px; letter-spacing: 0.16em; color: rgb(23, 21, 18);">HUMAN</span>
+              <span style="font-size: 14px; font-weight: 500; line-height: 1.7; color: rgb(23, 21, 18);">目的を決める</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+              <span style="height: 3px; background: rgb(23, 21, 18);"></span>
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 9.5px; letter-spacing: 0.16em; color: rgb(23, 21, 18);">HUMAN</span>
+              <span style="font-size: 14px; font-weight: 500; line-height: 1.7; color: rgb(23, 21, 18);">構成を固定する</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+              <span style="height: 3px; background: rgb(168, 65, 42);"></span>
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 9.5px; letter-spacing: 0.16em; color: rgb(168, 65, 42);">AI</span>
+              <span style="font-size: 14px; font-weight: 500; line-height: 1.7; color: rgb(23, 21, 18);">見た目を作る</span>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 9px;">
+              <span style="height: 3px; background: rgb(23, 21, 18);"></span>
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 9.5px; letter-spacing: 0.16em; color: rgb(23, 21, 18);">HUMAN</span>
+              <span style="font-size: 14px; font-weight: 500; line-height: 1.7; color: rgb(23, 21, 18);">削って直す</span>
+            </div>
+          </div>
+          <p style="margin: 0px; font-size: 13px; line-height: 1.85; color: rgb(107, 100, 91); border-top: 1px solid rgb(236, 227, 214); padding-top: 14px;">判断は人、生成はAI。AIが担うのは4工程のうち1つだけでした。</p>
+        </div>
+
+        <p style="margin: 0px;">私がやっていた方法と、ほぼ同じでした。自分の判断が妥当だったことを確認できたわけですが、それだけではありません。</p>
+
+        <p style="margin: 0px;">1つは、検討すらしていなかった選択肢が見つかったこと。もう1つは、いきなり全部を作らず、「同じ原稿で数枚だけ作って比べる」という進め方です。これは、私にはなかった発想でした。</p>
+
+        <p style="margin: 0px;">調べれば、ある程度妥当なやり方が手に入ります。自分の判断の裏が取れて、自分にはなかった発想も見つかる。事例を調べる価値は、その2つです。</p>
+
+        <p style="margin: 0px;">ここまでは、「人がどうやったか」を調べる話でした。AIそのものを調べたくなったときは、情報の細かさに気をつけてください。</p>
+
+        <p style="margin: 0px;">AIごと、モデルごとの性能差や、「こんな作業に使えます」という活用方法の一覧を調べると、量が多すぎて、かえって手が止まります。それよりも、世の中にどんなAIがあるのかを、大まかに見ておくほうが効果的です。</p>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; padding: 6px 0px 4px;">
+          <span style="padding: 9px 18px; background: rgb(255, 253, 250); border: 1px solid rgb(224, 214, 200); border-radius: 999px; font-size: 14px; color: rgb(59, 54, 48);">文章を書く</span>
+          <span style="padding: 9px 18px; background: rgb(255, 253, 250); border: 1px solid rgb(224, 214, 200); border-radius: 999px; font-size: 14px; color: rgb(59, 54, 48);">画像を作る</span>
+          <span style="padding: 9px 18px; background: rgb(255, 253, 250); border: 1px solid rgb(224, 214, 200); border-radius: 999px; font-size: 14px; color: rgb(59, 54, 48);">動画を作る</span>
+          <span style="padding: 9px 18px; background: rgb(255, 253, 250); border: 1px solid rgb(224, 214, 200); border-radius: 999px; font-size: 14px; color: rgb(59, 54, 48);">音楽を作る</span>
+          <span style="padding: 9px 18px; background: rgb(255, 253, 250); border: 1px solid rgb(224, 214, 200); border-radius: 999px; font-size: 14px; color: rgb(59, 54, 48);">アプリや業務ツールを作る</span>
+        </div>
+
+        <p style="margin: 0px;">非エンジニアでも、AIと会話しながら簡単なアプリやツールを作り、作業を効率化することが選択肢に入るようになっています。</p>
+
+        <p style="margin: 0px;">私も詳しいわけではありませんが、これくらいで十分だと思っています。「宣伝したい」と思ったときに、動画や音楽が候補に入るかどうかは、ここで決まります。知らなければ、その選択肢は最初から存在しないからです。</p>
+
+        <div style="display: flex; gap: 16px; padding: 22px 26px; background: rgb(253, 246, 239); border: 1px dashed rgb(217, 191, 169); border-radius: 2px;">
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.16em; color: rgb(168, 65, 42); flex: 0 0 auto; padding-top: 6px;">NOTE</span>
+          <p style="margin: 0px; font-size: 15px; line-height: 1.95; color: rgb(76, 71, 65);">AIが挙げる事例には、裏が取れないものも混ざります。やり方の参考として見る分には良いですが、事実として引用するなら、元の情報を確認する必要があります。</p>
+        </div>
+      </section>
+
+      <section id="s6" style="display: flex; flex-direction: column; gap: 26px; padding-top: 52px; scroll-margin-top: -44px;">
+        <h2 style="margin: 0px; display: flex; flex-direction: column; gap: 16px; border-top: 2px solid rgb(23, 21, 18); padding-top: 22px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(26px, 22.4px + 0.96vw, 33px); line-height: 1.5; color: rgb(23, 21, 18);">
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 12px; font-weight: 500; letter-spacing: 0.2em; color: rgb(168, 65, 42);">06</span>
+          できるかどうかは、自分で決めなくていい
+        </h2>
+
+        <p style="margin: 0px;">いちばんもったいないのは、「AIにそんなことができるわけない」と自分で判断して、聞かずに終わることだと思っています。</p>
+
+        <p style="margin: 0px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.7; color: rgb(247, 244, 239); padding: 30px 30px 34px; background: rgb(23, 21, 18); letter-spacing: -0.005em;">できるかどうかは、<br>AIが答えます。</p>
+
+        <h3 style="margin: 8px 0px 0px; display: flex; align-items: center; gap: 12px; font-family: &quot;Noto Serif JP&quot;, serif; font-weight: 700; font-size: clamp(19px, 17.9px + 0.28vw, 21px); line-height: 1.7; color: rgb(23, 21, 18);">
+          <span style="width: 6px; height: 6px; background: rgb(168, 65, 42); border-radius: 50%; flex: 0 0 auto;"></span>
+          やってみるときのプロセス
+        </h3>
+
+        <div style="display: flex; flex-direction: column; gap: 0px;">
+          <div style="display: grid; grid-template-columns: 44px minmax(0px, 1fr); gap: 18px; padding: 22px 0px; border-top: 1px solid rgb(228, 218, 205);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(168, 65, 42); padding-top: 4px;">01</span>
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <span style="font-size: clamp(15px, 14.5px + 0.21vw, 16px); line-height: 1.9;"><strong style="font-weight: 700; color: rgb(23, 21, 18);">最初に思い浮かべた作業を使います。</strong> まだなら、今ひとつ選んでください。資料作成でも、調べものでも、メールの下書きでも構いません</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0px, 1fr); gap: 18px; padding: 22px 0px; border-top: 1px solid rgb(228, 218, 205);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(168, 65, 42); padding-top: 4px;">02</span>
+            <span style="font-size: clamp(15px, 14.5px + 0.21vw, 16px); line-height: 1.9;"><strong style="font-weight: 700; color: rgb(23, 21, 18);">その作業の目的を、一言にしてみます。</strong> 何のためにやっているのか</span>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0px, 1fr); gap: 18px; padding: 22px 0px; border-top: 1px solid rgb(228, 218, 205);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(168, 65, 42); padding-top: 4px;">03</span>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-size: clamp(15px, 14.5px + 0.21vw, 16px); line-height: 1.9;"><strong style="font-weight: 700; color: rgb(23, 21, 18);">AIのことはいったん忘れて、どこで詰まっているのか、どうすれば良くなるのかを考えます。</strong> 思いつかなければ、そのまま送ってしまって大丈夫です</span>
+              <span style="padding: 16px 20px; background: rgb(241, 236, 227); border-radius: 2px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(14px, 13.5px + 0.21vw, 15px); line-height: 1.9; color: rgb(51, 46, 40);">「〜したいんだけど、それに対して効果的な方法ある？」</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0px, 1fr); gap: 18px; padding: 22px 0px; border-top: 1px solid rgb(228, 218, 205);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(168, 65, 42); padding-top: 4px;">04</span>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-size: clamp(15px, 14.5px + 0.21vw, 16px); line-height: 1.9;"><strong style="font-weight: 700; color: rgb(23, 21, 18);">やり方が見えたら、そのどこをAIに任せられるか考えます。</strong> 自分でやりにくいところや、何度も繰り返すところから。1つのAIで足りなさそうなら、分け方から聞いてしまいます</span>
+              <span style="padding: 16px 20px; background: rgb(241, 236, 227); border-radius: 2px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(14px, 13.5px + 0.21vw, 15px); line-height: 1.9; color: rgb(51, 46, 40);">「〜したいんだけど、どういうツールや手段を使って、どんな流れにするのがいいかな？」</span>
+            </div>
+          </div>
+          <div style="display: grid; grid-template-columns: 44px minmax(0px, 1fr); gap: 18px; padding: 22px 0px; border-top: 1px solid rgb(228, 218, 205); border-bottom: 1px solid rgb(228, 218, 205);">
+            <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 13px; color: rgb(168, 65, 42); padding-top: 4px;">05</span>
+            <div style="display: flex; flex-direction: column; gap: 14px;">
+              <span style="font-size: clamp(15px, 14.5px + 0.21vw, 16px); line-height: 1.9;"><strong style="font-weight: 700; color: rgb(23, 21, 18);">それでも進まなければ、同じことをやった人がいないか調べます</strong></span>
+              <span style="padding: 16px 20px; background: rgb(241, 236, 227); border-radius: 2px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(14px, 13.5px + 0.21vw, 15px); line-height: 1.9; color: rgb(51, 46, 40);">「AIを使って〜したいんだけど、実際にやった人の事例を調べて。どういう手順で、何を使ったのかと、うまくいかなかった点や、途中で変えたところも知りたい」</span>
+            </div>
+          </div>
+        </div>
+
+        <p style="margin: 0px;">全部やる必要はありません。手順3で足りることも多いです。</p>
+
+        <p style="margin: 0px;">「これ、AIでうまくやる方法ないかな」くらいの軽さで十分です。失敗しても困らないところで何回か試して、慣れてから業務に持ち込むほうが、たぶん早いと思います。</p>
+
+        <p style="margin: 0px;">何度か試していると、AIに何ができるかの解像度が勝手に上がっていきます。そうなると今度は、「あの作業でも使えるんじゃないか」「こういう使い方もできるんじゃないか」が、自分から出てくるようになります。</p>
+
+        <p style="margin: 0px; font-family: &quot;Noto Serif JP&quot;, serif; font-size: clamp(20px, 18.4px + 0.43vw, 23px); line-height: 1.9; color: rgb(23, 21, 18); padding-top: 8px;">新しい活用方法は、そこから始まります。</p>
+      </section>
+
+      
+
+      <footer style="margin-top: 64px; padding: 36px 0px 96px; border-top: 1px solid rgb(221, 211, 198); display: flex; flex-direction: column; gap: 14px;">
+        <p style="margin: 0px; font-size: 15px; color: rgb(107, 100, 91); line-height: 1.95;">今後も、実際にやったことをもとに書いていきます。<br>うまくいかなかったら、ぜひ教えてください。</p>
+        <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 11px; letter-spacing: 0.2em; color: rgb(168, 158, 147);">END OF ARTICLE</span>
+      </footer>
+    </main>
+
+    
+      <nav data-ui="rail" style="position: sticky; top: 64px; padding: 56px 0px 40px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="position: relative; width: 46px; height: 46px; flex: 0 0 auto;">
+            <svg width="46" height="46" viewBox="0 0 30 30" style="position: absolute; inset: 0px; transform: rotate(-90deg);">
+              <circle cx="15" cy="15" r="13" fill="none" stroke="#e4dacd" stroke-width="2"></circle>
+              <circle cx="15" cy="15" r="13" fill="none" stroke="#a8412a" stroke-width="2" stroke-linecap="round" stroke-dasharray="81.68" stroke-dashoffset="81.68" style="transition: stroke-dashoffset 0.25s linear;"></circle>
+            </svg>
+            <span style="position: absolute; inset: 0px; display: flex; align-items: center; justify-content: center; font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; color: rgb(23, 21, 18);">0%</span>
+          </div>
+          <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 9px; letter-spacing: 0.2em; color: rgb(168, 158, 147);">READ</span>
+          <button type="button" title="読了記録をリセット" class="scp1" style="margin-left: auto; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: transparent; border: 1px solid rgb(228, 218, 205); border-radius: 50%; color: rgb(138, 129, 120); font-size: 12px; line-height: 1; cursor: pointer;">↺</button>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          
+            <a href="#s1" class="scp2" style="display: flex; gap: 10px; padding: 9px 8px 9px 10px; font-size: 13px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-left: 2px solid rgb(233, 224, 211); background: transparent; transition: color 0.25s, border-color 0.35s, background 0.6s;">
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; color: rgb(192, 182, 170); flex: 0 0 auto; padding-top: 3px; transition: color 0.3s;">01</span>
+              <span>できることは、使う人によって変わる</span>
+            </a>
+          
+            <a href="#s2" class="scp2" style="display: flex; gap: 10px; padding: 9px 8px 9px 10px; font-size: 13px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-left: 2px solid rgb(233, 224, 211); background: transparent; transition: color 0.25s, border-color 0.35s, background 0.6s;">
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; color: rgb(192, 182, 170); flex: 0 0 auto; padding-top: 3px; transition: color 0.3s;">02</span>
+              <span>考えることは1つ、切り口は3つ</span>
+            </a>
+          
+            <a href="#s3" class="scp2" style="display: flex; gap: 10px; padding: 9px 8px 9px 10px; font-size: 13px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-left: 2px solid rgb(233, 224, 211); background: transparent; transition: color 0.25s, border-color 0.35s, background 0.6s;">
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; color: rgb(192, 182, 170); flex: 0 0 auto; padding-top: 3px; transition: color 0.3s;">03</span>
+              <span>① やり方：何をすれば良くなるか</span>
+            </a>
+          
+            <a href="#s4" class="scp2" style="display: flex; gap: 10px; padding: 9px 8px 9px 10px; font-size: 13px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-left: 2px solid rgb(233, 224, 211); background: transparent; transition: color 0.25s, border-color 0.35s, background 0.6s;">
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; color: rgb(192, 182, 170); flex: 0 0 auto; padding-top: 3px; transition: color 0.3s;">04</span>
+              <span>② 組み合わせ：何を使って、どう分けるか</span>
+            </a>
+          
+            <a href="#s5" class="scp2" style="display: flex; gap: 10px; padding: 9px 8px 9px 10px; font-size: 13px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-left: 2px solid rgb(233, 224, 211); background: transparent; transition: color 0.25s, border-color 0.35s, background 0.6s;">
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; color: rgb(192, 182, 170); flex: 0 0 auto; padding-top: 3px; transition: color 0.3s;">05</span>
+              <span>③ 事例：誰かがすでにやっていないか</span>
+            </a>
+          
+            <a href="#s6" class="scp2" style="display: flex; gap: 10px; padding: 9px 8px 9px 10px; font-size: 13px; line-height: 1.7; color: rgb(76, 71, 65); font-weight: 400; text-decoration: none; border-left: 2px solid rgb(233, 224, 211); background: transparent; transition: color 0.25s, border-color 0.35s, background 0.6s;">
+              <span style="font-family: &quot;JetBrains Mono&quot;, monospace; font-size: 10px; color: rgb(192, 182, 170); flex: 0 0 auto; padding-top: 3px; transition: color 0.3s;">06</span>
+              <span>できるかどうかは、自分で決めなくていい</span>
+            </a>
+          
+        </div>
+      </nav>
+    
+  </div></div></div></div>
+
+
+
+
+<script>
+(function () {
+  var KEY = 'ai-article-read';
+  var C = 81.68;
+  var host  = document.querySelector('.sc-host');
+  var secs  = ['s1','s2','s3','s4','s5','s6'];
+  var links = [].slice.call(host.querySelectorAll('a[href^="#s"]'));
+  var rings = [].slice.call(host.querySelectorAll('circle[stroke="#a8412a"]'));
+  var pcts  = [].slice.call(host.querySelectorAll('span')).filter(function (s) {
+                return /^\s*0%\s*$/.test(s.textContent) && !s.children.length; });
+  var fill  = host.querySelector('[data-ui="topbar-fill"]');
+  var mbar  = host.querySelector('[data-ui="mbar"]');
+  var scrim = host.querySelector('[data-ui="scrim"]');
+  var panel = mbar && mbar.querySelector('[style*="visibility: hidden"]');
+  var menuBtn = [].slice.call(host.querySelectorAll('button')).filter(function (b) {
+                  return b.textContent.trim() === '目次'; })[0];
+  var resets  = [].slice.call(host.querySelectorAll('button[title="読了記録をリセット"]'));
+
+  var read = 0, resetting = false, flashT;
+  try { read = parseInt(localStorage.getItem(KEY) || '0', 10) || 0; } catch (e) {}
+
+  var NUMS = ['01','02','03','04','05','06'];
+
+  function paintToc(current, justRead) {
+    links.forEach(function (a, i) {
+      var idx  = secs.indexOf(a.getAttribute('href').slice(1));
+      var done = idx < read;
+      var act  = idx === current && !done;
+      var mark = a.querySelector('span');
+      if (mark) {
+        mark.textContent = done ? '✓' : NUMS[idx];
+        mark.style.color = done || act ? '#a8412a' : '#c0b6aa';
+      }
+      a.style.color       = done ? '#a8412a' : act ? '#171512' : '#4c4741';
+      a.style.fontWeight  = act ? 700 : 400;
+      a.style.borderLeftColor = done ? '#a8412a' : act ? '#d9a07f' : '#e9e0d3';
+      a.style.background  = idx === justRead ? '#fdf3ec' : 'transparent';
+    });
+  }
+
+  function paintPct(p) {
+    var v = Math.round(p * 100);
+    rings.forEach(function (c) { c.setAttribute('stroke-dashoffset', (C * (1 - v / 100)).toFixed(2)); });
+    pcts.forEach(function (s) { s.textContent = v + '%'; });
+    if (fill) fill.style.width = (p * 100).toFixed(1) + '%';
+  }
+
+  var justRead = -1;
+
+  function onScroll() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? Math.min(1, h.scrollTop / max) : 0;
+    var line = h.scrollTop + window.innerHeight * 0.55;
+    var current = -1, r = 0;
+
+    secs.forEach(function (id, i) {
+      var el = document.getElementById(id);
+      if (!el) return;
+      var top = el.getBoundingClientRect().top + h.scrollTop;
+      var bottom = top + el.offsetHeight;
+      if (top <= h.scrollTop + 140) current = i;
+      if (bottom <= line) r = i + 1;
+    });
+    if (max - h.scrollTop < 120) r = secs.length;
+
+    if (resetting) {
+      if (h.scrollTop > 40) { paintPct(p); paintToc(current, -1); return; }
+      resetting = false;
+    }
+
+    var next = Math.max(r, read);
+    if (next !== read) {
+      read = next;
+      try { localStorage.setItem(KEY, String(read)); } catch (e) {}
+      justRead = read - 1;
+      clearTimeout(flashT);
+      flashT = setTimeout(function () { justRead = -1; paintToc(current, -1); }, 1400);
+    }
+    paintPct(p);
+    paintToc(current, justRead);
+  }
+
+  links.forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var el = document.getElementById(a.getAttribute('href').slice(1));
+      if (!el) return;
+      var narrow = window.matchMedia('(max-width: 860px)').matches;
+      var top = el.getBoundingClientRect().top + window.scrollY - (narrow ? 74 : 26) + 44;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
+      closeMenu();
+    });
+  });
+
+  resets.forEach(function (b) {
+    b.addEventListener('click', function (e) {
+      e.preventDefault();
+      resetting = true; read = 0; justRead = -1;
+      try { localStorage.setItem(KEY, '0'); } catch (e2) {}
+      clearTimeout(flashT); closeMenu();
+      paintToc(-1, -1);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
+
+  function openMenu(on) {
+    if (!panel) return;
+    panel.style.visibility = on ? 'visible' : 'hidden';
+    panel.style.opacity = on ? 1 : 0;
+    panel.style.transform = on ? 'translateY(0)' : 'translateY(-8px)';
+    if (scrim) { scrim.style.opacity = on ? 1 : 0; scrim.style.pointerEvents = on ? 'auto' : 'none'; }
+  }
+  function closeMenu() { openMenu(false); }
+
+  if (menuBtn) {
+    menuBtn.addEventListener('click', function (e) {
+      e.preventDefault(); e.stopPropagation();
+      openMenu(!(panel && panel.style.visibility === 'visible'));
+    });
+  }
+  if (scrim) scrim.addEventListener('click', closeMenu);
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  document.documentElement.style.scrollPaddingTop = '24px';
+  onScroll();
+})();
+</script>
+</body>
+</html>

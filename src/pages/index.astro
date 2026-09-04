@@ -1,10 +1,16 @@
 ---
 import '../styles/global.css';
 
-const mods = import.meta.glob('./posts/*.md', { eager: true });
-const posts = Object.values(mods)
-  .map((m) => ({ ...m.frontmatter, url: m.url }))
-  .sort((a, b) => (a.date < b.date ? 1 : -1));
+const posts = [
+  {
+    url: '/posts/2026-09-02-what-you-want-not-what-ai-can-do/',
+    title: 'AI活用は「何ができるか」ではなく「何をしたいか」',
+    description:
+      'AIの側から入ると、活用方法の一覧の中から自分に当てはまるものを探すことになります。業務のほうから入る——「やり方」「組み合わせ」「事例」の3つの切り口で、実際にどう考えたかを書きます。',
+    date: '2026.09',
+    minutes: 8,
+  },
+];
 ---
 
 <!doctype html>
@@ -38,7 +44,7 @@ const posts = Object.values(mods)
               <span class="n">{String(posts.length - i).padStart(2, '0')}</span>
               <span class="body">
                 <span class="t">{p.title}</span>
-                {p.description && <span class="d">{p.description}</span>}
+                <span class="d">{p.description}</span>
                 <span class="m">{p.date} ／ 約{p.minutes}分</span>
               </span>
             </a>
@@ -50,26 +56,13 @@ const posts = Object.values(mods)
     <style>
       .index { list-style: none; padding: 0; margin: 8px 0 120px; }
       .index li { border-bottom: 1px solid var(--line-soft); }
-      .index a {
-        display: flex; gap: 22px; padding: 32px 0;
-        text-decoration: none; color: inherit;
-      }
-      .n {
-        font-family: var(--mono); font-size: 11px; color: var(--muted-light);
-        padding-top: 8px; flex: none;
-      }
+      .index a { display: flex; gap: 22px; padding: 32px 0; text-decoration: none; color: inherit; }
+      .n { font-family: var(--mono); font-size: 11px; color: var(--muted-light); padding-top: 8px; flex: none; }
       .body { display: flex; flex-direction: column; gap: 10px; max-width: 34em; }
-      .t {
-        font-family: var(--serif); font-weight: 700;
-        font-size: clamp(20px, 2.2vw, 26px); line-height: 1.6; color: var(--ink);
-        transition: color 0.2s;
-      }
+      .t { font-family: var(--serif); font-weight: 700; font-size: clamp(20px, 2.2vw, 26px); line-height: 1.6; color: var(--ink); transition: color 0.2s; }
       .index a:hover .t { color: var(--accent); }
       .d { font-size: 14.5px; line-height: 1.95; color: var(--body-soft); }
-      .m {
-        font-family: var(--mono); font-size: 11px;
-        letter-spacing: 0.08em; color: var(--muted-light);
-      }
+      .m { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; color: var(--muted-light); }
     </style>
   </body>
 </html>

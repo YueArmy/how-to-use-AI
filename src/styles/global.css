@@ -4,6 +4,9 @@
    ============================================================ */
 
 :root {
+  /* ダークモードのブラウザでも地を暗くしない */
+  color-scheme: light;
+
   /* surfaces */
   --bg:            #f7f4ef;
   --surface:       #fffdfa;
@@ -39,6 +42,8 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { scroll-behavior: smooth; }
+
+html { background: var(--bg); }
 
 body {
   background: var(--bg);

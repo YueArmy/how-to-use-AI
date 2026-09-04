@@ -3,6 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  /* ランタイム起動前でも地色を確定させる。
+     helmet 内の指定はブート後にしか効かないため、ここに直接置く。 */
+  :root { color-scheme: light; }
+  html, body { background: #f7f4ef; color: #1d1b18; }
+</style>
 <title>AI活用は「何ができるか」ではなく「何をしたいか」</title>
 <meta name="description" content="AIの側から入ると、活用方法の一覧の中から自分に当てはまるものを探すことになります。業務のほうから入る——「やり方」「組み合わせ」「事例」の3つの切り口で、実際にどう考えたかを書きます。">
 <script src="./support.js"></script>

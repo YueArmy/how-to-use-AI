@@ -35,7 +35,9 @@
 .ending-statement span{display:block}
 .ending-statement span:last-child{color:#e3b69a}
 .ending-note{max-width:40em;margin:32px 0 0;font-size:1rem;line-height:2.1;color:#d0c3b7;text-wrap:pretty}
-.article-ending .completion{max-width:688px;margin:46px 0 0;padding-top:24px;border-color:#615348}
+.ending-divider{max-width:688px;margin:36px 0 0;border:0;border-top:1px solid #615348}
+.article-ending .completion{max-width:688px;margin:28px 0 0;padding-top:0;border:0}
+.article-ending .completion .reset-read{display:block}
 .article-ending .completion>span{color:#e3b69a}
 .article-ending .completion p{color:#d0c3b7}
 .article-ending .reset-read{color:#d0c3b7}

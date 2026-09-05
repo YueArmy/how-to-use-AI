@@ -111,7 +111,7 @@
     if (target) navigate(target, location.hash, false);
   });
   document.querySelectorAll('.reset-read').forEach(button => button.addEventListener('click', () => {
-    passed.clear(); seen.clear(); persist(); updateMarks(); status('通過記録をリセットしました。');
+    passed.clear(); seen.clear(); persist(); updateMarks(); status('進捗をリセットしました。');
   }));
   // Use the article's actual length; navigation and decorative labels do not count.
   const chars = Array.from(article.querySelectorAll('p')).map(p => p.textContent).join('').replace(/\s/g, '').length;

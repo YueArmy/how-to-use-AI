@@ -46,9 +46,9 @@ localStorage のキーは `ai-article-read`。
 
 ## 体験版LP
 
-- ホームは `public/index.html`。記事一覧と別枠で、体験版へのカードを掲載しています。
+- ホームは `public/index.html`。記事一覧の下に、小さな「関連コンテンツ」欄と「ゴールから考えるAI活用｜LP Version」リンクを掲載しています。
 - 体験版は `public/experience/`。公開先は https://yuearmy.github.io/how-to-use-AI/experience/ です。
-- `public/home-experience.css` はホームの体験版カード専用スタイルです。
+- `public/home-experience.css` はホームの関連コンテンツ欄専用スタイルです。
 - LPのCSS・JavaScript・画像は `public/experience/` 内で完結し、元記事とホームへ相対リンクで戻れます。
 - 相談文の作成はブラウザ内で行い、AIへの送信はしません。入力途中の内容は端末のlocalStorageに保存します。
 - 会話は約20秒のデモです。スマホサイズの枠内で、各発言の下に成果物を表示します。

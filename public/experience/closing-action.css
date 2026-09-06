@@ -1,0 +1,46 @@
+/* The ending turns the central idea into one concrete next action. */
+.closing-action{position:relative;min-height:78svh;display:flex;align-items:center;background:radial-gradient(ellipse at 50% 100%,#263d26 0,transparent 70%),#122019;border-top:1px solid #7f9a543d;padding-top:105px;padding-bottom:105px}
+.closing-action-copy{text-align:center;max-width:900px;margin:0 auto}
+.closing-action .eyebrow{color:#a2b991;letter-spacing:.1em;margin-bottom:34px}
+.closing-action-title{font-family:"Hiragino Mincho ProN","Yu Mincho",YuMincho,Georgia,serif;font-size:clamp(36px,5.3vw,72px);font-weight:500;line-height:1.65;letter-spacing:-.04em;color:#edf3e4}
+.closing-action-title>span{display:block}
+.closing-action-word{color:var(--acid);position:relative;display:inline-block}
+.closing-action-word:after{content:'';position:absolute;left:.12em;right:.12em;bottom:.14em;height:2px;background:#b0cd6e;transform-origin:left}
+.motion-ready .closing-action-word:after{transform:scaleX(0);transition:transform 1s var(--ease) .3s}
+.motion-ready .is-visible .closing-action-word:after{transform:scaleX(1)}
+.closing-action-lead{font-size:15px;line-height:2.1;color:#b7c9ad;margin-top:28px}
+.closing-action-note{font-size:12px;line-height:1.9;color:#9fb591;margin-top:24px}
+.consultation-disclosure{margin-top:21px;scroll-margin-top:24px}
+.closing-action-cta{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:35px;width:fit-content;max-width:100%;min-width:320px;min-height:65px;margin:0 auto;padding:18px 26px;background:var(--acid);color:#1c2e0e;font-size:16px;font-weight:600;line-height:1.7;cursor:pointer;box-shadow:0 5px 0 #719444;transition:background .2s,transform .2s}
+.closing-action-cta::-webkit-details-marker{display:none}
+.closing-action-cta:hover{background:#e9ff9f;transform:translateY(-2px)}
+.closing-cta-arrow{font:27px/1 Arial,sans-serif;font-weight:400}
+.cta-when-open{display:none}
+.consultation-disclosure[open]>.closing-action-cta{background:transparent;box-shadow:none;color:#c0d4af;border:1px solid #658555;font-size:13px;min-height:48px;padding:12px 22px;min-width:280px}
+.consultation-disclosure[open] .cta-when-closed{display:none}
+.consultation-disclosure[open] .cta-when-open{display:inline}
+.consultation-disclosure[open] .closing-cta-arrow{transform:rotate(-90deg);font-size:20px}
+.consultation-panel{margin-top:46px;animation:consultation-reveal .4s var(--ease)}
+.consultation-intro{margin-bottom:25px}
+.consultation-intro h3{font-size:24px;line-height:1.7;font-weight:550;letter-spacing:-.03em;scroll-margin-top:28px}
+.consultation-intro h3:focus{outline:none}
+.consultation-intro p{font-size:13px;line-height:1.9;color:#a8bfa0;margin-top:9px}
+@keyframes consultation-reveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(max-width:760px){
+ .closing-action{min-height:76svh;padding-top:76px;padding-bottom:80px}
+ .closing-action .eyebrow{font-size:11px;margin-bottom:28px}
+ .closing-action-title{font-size:clamp(28px,8vw,43px);line-height:1.9;letter-spacing:-.045em}
+ .closing-action-lead{font-size:13px;line-height:2;margin-top:25px}
+ .closing-action-note{font-size:11px;line-height:1.9;margin-top:23px}
+ .consultation-disclosure{margin-top:19px}
+ .closing-action-cta{width:100%;max-width:370px;min-width:0;font-size:14px;min-height:61px;padding:17px 21px;gap:15px}
+ .closing-cta-arrow{font-size:25px}
+ .consultation-disclosure[open]>.closing-action-cta{min-width:0;max-width:320px;font-size:12px}
+ .consultation-panel{margin-top:34px}
+ .consultation-intro{margin-bottom:21px}
+ .consultation-intro h3{font-size:20px;scroll-margin-top:20px}
+ .consultation-intro p{font-size:12px}
+}
+@media(max-width:375px){.closing-action-title{font-size:7.8vw}.closing-action-lead{font-size:12px}.closing-action-note{font-size:10px}.closing-action-cta{font-size:13px}.consultation-intro h3{font-size:18px}}
+@media(prefers-reduced-motion:reduce){.closing-action-cta{transition:none}.consultation-panel{animation:none}.motion-ready .closing-action-word:after{transform:scaleX(1);transition:none}}
+@media print{.closing-action{min-height:0;padding:30px 0;background:white}.closing-action-title{font-size:32px;color:black}.closing-action-word{color:black}.closing-action-lead{color:black}.consultation-disclosure,.closing-action-note{display:none}}

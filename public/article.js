@@ -115,7 +115,8 @@
   }));
   // Use the article's actual length; navigation and decorative labels do not count.
   const chars = Array.from(article.querySelectorAll('p')).map(p => p.textContent).join('').replace(/\s/g, '').length;
-  document.querySelector('#reading-minutes').textContent = Math.max(1, Math.ceil(chars / 600));
+  const readingMinutes = document.querySelector('#reading-minutes');
+  readingMinutes.textContent = readingMinutes.dataset.fixedMinutes || Math.max(1, Math.ceil(chars / 600));
   updateMarks();
   // Keep direct section links intact when fonts and images finish loading.
   if (location.hash) {

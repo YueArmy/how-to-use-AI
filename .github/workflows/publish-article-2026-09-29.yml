@@ -62,7 +62,7 @@ jobs:
           if [[ $(jq -r '.draft' <<< "$pr") == true ]]; then
             gh pr ready 1 --repo "$GITHUB_REPOSITORY"
           fi
-          gh pr merge 1 --repo "$GITHUB_REPOSITORY" --squash --delete-branch
+          gh pr merge 1 --repo "$GITHUB_REPOSITORY" --squash
           echo 'deploy=true' >> "$GITHUB_OUTPUT"
 
   build:

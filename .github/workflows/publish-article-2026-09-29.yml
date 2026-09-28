@@ -54,7 +54,7 @@ jobs:
             exit 1
           fi
           if [[ $(jq -r '.base.ref' <<< "$pr") != main ||
-                $(jq -r '.head.sha' <<< "$pr") != 589870da6a4bccb71dd17fef3c91ada214835ae3 ]]; then
+                $(jq -r '.head.sha' <<< "$pr") != 4b0efcca9b62294feeaff0d8c5e9055f1eb18d54 ]]; then
             echo 'Article PR changed after review; stopping the scheduled release.' >&2
             exit 1
           fi

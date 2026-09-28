@@ -60,3 +60,6 @@ html{scroll-padding-top:72px}.masthead,.sidebar{display:none}.mobile-reader{disp
 
 /* Keep two-digit numbering together, including at enlarged text sizes. */
 .chapter-number,.perspective-number,.action-number,.workflow-step::before{white-space:nowrap;overflow-wrap:normal;word-break:normal;font-variant-numeric:lining-nums tabular-nums}
+
+/* Keep section headings visible below the sticky reader bar after TOC navigation. */
+@media (max-width:860px){.article .chapter[id]{scroll-margin-top:72px}}

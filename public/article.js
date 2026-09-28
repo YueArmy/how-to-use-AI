@@ -10,7 +10,7 @@
   const close = document.querySelector('#toc-close');
   const mq = window.matchMedia('(max-width: 860px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const key = 'ai-practice-section-progress-v2';
+  const key = article.dataset.progressKey || 'ai-practice-section-progress-v2';
   const seen = new Set();
   let passed = new Set();
   let frame = 0;

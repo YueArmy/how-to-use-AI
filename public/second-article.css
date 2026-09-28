@@ -1,0 +1,55 @@
+/* Issue 02: reuse the journal palette and reading layout. */
+.second-hero { padding-bottom: 34px; }
+.second-hero .hero-copy { max-width: 990px; }
+.second-hero h1 { font-size: clamp(2.15rem, 4.5vw, 3.55rem); }
+.second-hero .hero-deck { margin: 30px auto 0; }
+.second-article { padding-top: 32px; }
+.second-article .section-divider { width: 100%; border: 0; border-top: 1px solid var(--rule); margin: 12px 0; }
+.second-article > .note-label { margin-bottom: -22px; }
+.second-article > .note-label + p { font: 500 1.3rem/2 var(--serif); color: var(--ink); }
+.second-article .flow-point { margin: -15px 0; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: .98rem; }
+.second-article .flow-point strong { display: inline-block; min-width: 2.6rem; color: var(--accent); font: italic 1.3rem Georgia, serif; }
+.second-article .decision-list { margin-top: -10px; padding: 14px 22px 14px 2.7em; background: var(--surface); }
+.second-article .decision-list li { padding: 3px 0; }
+.second-article ul, .second-article ol { margin: 0; padding-left: 1.45em; }
+.second-article ul.decision-list { padding-left: 2.7em; }
+.second-article li { padding: 5px 0; }
+.second-article li::marker { color: var(--accent); }
+.second-article blockquote { margin: 6px 0; padding: 17px 22px; background: var(--surface); border-left: 2px solid var(--accent); font-size: .98rem; line-height: 2; }
+.second-article blockquote p + p { margin-top: 12px; }
+.second-article .chapter h4 { margin: 12px 0 0; color: var(--ink); font: 700 1.02rem/1.8 var(--sans); }
+.second-article .article-figure { margin: 16px 0; }
+.second-article .article-figure a > img { width: 100%; height: auto; aspect-ratio: 16/9; object-fit: contain; }
+.second-article .article-figure figcaption a { margin-left: auto; }
+.second-article .final-thumbnail { margin: 20px 0 8px; }
+.second-article .draft-gallery { margin: 12px 0; }
+.second-article .draft-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
+.second-article .draft-grid a { display: block; min-width: 0; }
+.second-article .draft-grid img { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+.second-article .draft-gallery figcaption { margin-top: 12px; font-size: .8125rem; line-height: 1.85; color: var(--muted); }
+.second-article .chapter > .note-label { color: var(--accent); margin-bottom: -20px; }
+.second-article .chapter > ol { counter-reset: item; }
+.second-article .chapter > ol[start="4"] { counter-reset: item 3; }
+.second-article .decision-examples { display: flex; flex-direction: column; border-top: 1px solid var(--rule); margin: -18px 0 0 2.3em; }
+.second-article .decision-examples p { display: flex; flex-direction: column; gap: 3px; padding: 12px 0; border-bottom: 1px solid var(--rule); font-size: .94rem; }
+.second-article .decision-examples span { color: var(--muted); }
+.second-article .decision-examples .decision-hint { color: var(--accent); }
+
+@media (max-width: 860px) {
+  .second-hero { padding-bottom: 20px; }
+  .second-hero h1 { font-size: clamp(1.8rem, 7.4vw, 2.55rem); }
+  .second-hero .hero-deck { margin-top: 26px; }
+  .second-article { padding-top: 18px; }
+  .second-article > .note-label + p { font-size: 1.15rem; }
+  .second-article .article-figure, .second-article .draft-gallery { margin: 14px calc(-1 * var(--gutter)); }
+  .second-article .article-figure figcaption, .second-article .draft-gallery figcaption { padding: 0 var(--gutter); }
+  .second-article .draft-grid { gap: 4px; }
+  .second-article .draft-grid a:first-child { grid-column: span 3; }
+  .second-article .draft-grid a:not(:first-child) { grid-column: span 3; }
+  .second-article .flow-point { margin: -10px 0; }
+  .second-article .decision-examples { margin-left: 1.2em; }
+}
+@media print {
+  .second-article .draft-grid { gap: 4px; }
+  .second-article .article-figure { margin-inline: 0; }
+}

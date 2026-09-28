@@ -1,0 +1,95 @@
+name: Publish second AI practice article
+
+on:
+  schedule:
+    # 2026-09-29 12:35 JST, with two later attempts if GitHub drops a run.
+    - cron: '35,50 3 29 9 *'
+    - cron: '5 4 29 9 *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.publish.outputs.deploy }}
+    steps:
+      - name: Merge only the reviewed article after its release time
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          release_at=$(date -u -d '2026-09-29T03:35:00Z' +%s)
+          now=$(date -u +%s)
+          if (( now < release_at )); then
+            echo 'Release time has not arrived; leaving the article unpublished.'
+            exit 0
+          fi
+          if (( now > release_at + 604800 )); then
+            echo 'The release window has expired; no action is needed.'
+            exit 0
+          fi
+
+          pr=$(gh api "repos/${GITHUB_REPOSITORY}/pulls/1")
+          if [[ $(jq -r '.merged_at' <<< "$pr") != null ]]; then
+            echo 'Article PR is already merged.'
+            if [[ $GITHUB_EVENT_NAME == workflow_dispatch ]]; then
+              echo 'deploy=true' >> "$GITHUB_OUTPUT"
+            fi
+            exit 0
+          fi
+          if [[ $(jq -r '.state' <<< "$pr") != open ]]; then
+            echo 'Article PR is closed without publication.' >&2
+            exit 1
+          fi
+          if [[ $(jq -r '.base.ref' <<< "$pr") != main ||
+                $(jq -r '.head.sha' <<< "$pr") != d68613d664d7567344512244f29a09ee5c133723 ]]; then
+            echo 'Article PR changed after review; stopping the scheduled release.' >&2
+            exit 1
+          fi
+
+          if [[ $(jq -r '.draft' <<< "$pr") == true ]]; then
+            gh pr ready 1 --repo "$GITHUB_REPOSITORY"
+          fi
+          gh pr merge 1 --repo "$GITHUB_REPOSITORY" --squash --delete-branch
+          echo 'deploy=true' >> "$GITHUB_OUTPUT"
+
+  build:
+    if: needs.release.outputs.deploy == 'true'
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    if: needs.release.outputs.deploy == 'true'
+    needs: [release, build]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

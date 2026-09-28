@@ -41,11 +41,16 @@
   .second-hero .hero-deck { margin-top: 26px; }
   .second-article { padding-top: 18px; }
   .second-article > p:not(.note-label):not(.flow-point),
-  .second-article .chapter > p:not(.note-label) {
+  .second-article .chapter > p:not(.note-label):not(.flow-point) {
     font-size: 17px;
     line-height: 1.8;
     letter-spacing: .03em;
+    margin: 0 0 1em;
     text-align: left;
+  }
+  .second-article > p:not(.note-label):not(.flow-point) + p:not(.note-label):not(.flow-point),
+  .second-article .chapter > p:not(.note-label):not(.flow-point) + p:not(.note-label):not(.flow-point) {
+    margin-top: -24px;
   }
   .second-article > .note-label + p { font-size: 1.15rem; }
   .second-article .article-figure, .second-article .draft-gallery { margin: 14px calc(-1 * var(--gutter)); }

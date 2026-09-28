@@ -2,6 +2,24 @@
   'use strict';
   const article = document.querySelector('#article');
   if (!article) return;
+  const copyArticleButton = document.querySelector('[data-copy-article]');
+  if (copyArticleButton) {
+    const copyStatus = document.querySelector('.article-source-status');
+    copyArticleButton.addEventListener('click', async () => {
+      copyArticleButton.disabled = true;
+      copyStatus.textContent = '本文をコピーしています…';
+      try {
+        const response = await fetch(copyArticleButton.dataset.copyArticle);
+        if (!response.ok) throw new Error('本文を取得できませんでした');
+        await navigator.clipboard.writeText(await response.text());
+        copyStatus.textContent = '本文をコピーしました。AIの入力欄に貼り付けて使えます。';
+      } catch (_) {
+        copyStatus.textContent = 'コピーできませんでした。Markdownをダウンロードして添付してください。';
+      } finally {
+        copyArticleButton.disabled = false;
+      }
+    });
+  }
   const sections = Array.from(article.querySelectorAll('section[id]'));
   const links = Array.from(document.querySelectorAll('[data-section]'));
   const menu = document.querySelector('#mobile-toc');

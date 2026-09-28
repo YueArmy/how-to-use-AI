@@ -60,3 +60,11 @@ html{scroll-padding-top:72px}.masthead,.sidebar{display:none}.mobile-reader{disp
 
 /* Keep two-digit numbering together, including at enlarged text sizes. */
 .chapter-number,.perspective-number,.action-number,.workflow-step::before{white-space:nowrap;overflow-wrap:normal;word-break:normal;font-variant-numeric:lining-nums tabular-nums}
+
+/* Issue 02 has its own cover, while the earlier thumbnail appears in the article. */
+.editorial-cover{display:flex;flex-direction:column;justify-content:space-between;width:100%;aspect-ratio:4/3;padding:clamp(24px,4vw,44px);background:#eee9e1;border:1px solid var(--rule);color:var(--ink)}
+.cover-kicker{display:block;padding-bottom:14px;border-bottom:1px solid #cbbfb1;color:var(--accent);font-size:.75rem;letter-spacing:.12em}
+.cover-title{display:block;font:500 clamp(1.75rem,3.6vw,2.9rem)/1.6 var(--serif);letter-spacing:-.04em}
+.cover-title em{font-style:normal;color:var(--accent)}
+.cover-steps{display:block;padding-top:13px;border-top:1px solid #cbbfb1;color:var(--muted);font-size:.8125rem;letter-spacing:.04em}
+@media(max-width:540px){.editorial-cover{aspect-ratio:16/9;min-height:230px;margin-inline:calc(-1 * var(--gutter));width:calc(100% + 2 * var(--gutter));padding:24px var(--gutter)}.cover-title{font-size:clamp(1.7rem,7vw,2.4rem)}}

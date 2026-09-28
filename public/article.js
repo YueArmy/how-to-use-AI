@@ -141,7 +141,7 @@
     navigating = true;
     window.addEventListener('load', () => {
       const target = document.getElementById(location.hash.slice(1));
-      if (target) { target.scrollIntoView({behavior:'instant'}); target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); }
+      if (target) { target.scrollIntoView({behavior:'auto'}); target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); }
       navigating = false; queueUpdate();
     }, {once:true});
   }

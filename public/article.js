@@ -111,7 +111,7 @@
     if (push && location.hash !== hash) history.pushState(null, '', hash);
     target.setAttribute('tabindex', '-1');
     target.focus({preventScroll:true});
-    target.scrollIntoView({behavior:reduced.matches ? 'instant' : 'smooth', block:'start'});
+    target.scrollIntoView({behavior:reduced.matches ? 'auto' : 'smooth', block:'start'});
     navigationTimer = setTimeout(() => { navigating = false; queueUpdate(); }, reduced.matches ? 50 : 1200);
   }
   document.querySelectorAll('a[href^="#"]').forEach(link => {

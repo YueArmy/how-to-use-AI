@@ -1,4 +1,4 @@
-name: Publish second AI practice article
+name: Publish second AI practice article (released immediately)
 
 on:
   push:

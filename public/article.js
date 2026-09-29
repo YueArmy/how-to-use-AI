@@ -2,6 +2,24 @@
   'use strict';
   const article = document.querySelector('#article');
   if (!article) return;
+  const copyArticleButton = document.querySelector('[data-copy-article]');
+  if (copyArticleButton) {
+    const copyStatus = document.querySelector('.article-source-status');
+    copyArticleButton.addEventListener('click', async () => {
+      copyArticleButton.disabled = true;
+      copyStatus.textContent = '本文をコピーしています…';
+      try {
+        const response = await fetch(copyArticleButton.dataset.copyArticle);
+        if (!response.ok) throw new Error('本文を取得できませんでした');
+        await navigator.clipboard.writeText(await response.text());
+        copyStatus.textContent = '本文をコピーしました。AIの入力欄に貼り付けて使えます。';
+      } catch (_) {
+        copyStatus.textContent = 'コピーできませんでした。Markdownをダウンロードして添付してください。';
+      } finally {
+        copyArticleButton.disabled = false;
+      }
+    });
+  }
   const sections = Array.from(article.querySelectorAll('section[id]'));
   const links = Array.from(document.querySelectorAll('[data-section]'));
   const menu = document.querySelector('#mobile-toc');
@@ -10,7 +28,7 @@
   const close = document.querySelector('#toc-close');
   const mq = window.matchMedia('(max-width: 860px)');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-  const key = 'ai-practice-section-progress-v2';
+  const key = article.dataset.progressKey || 'ai-practice-section-progress-v2';
   const seen = new Set();
   let passed = new Set();
   let frame = 0;
@@ -93,7 +111,7 @@
     if (push && location.hash !== hash) history.pushState(null, '', hash);
     target.setAttribute('tabindex', '-1');
     target.focus({preventScroll:true});
-    target.scrollIntoView({behavior:reduced.matches ? 'instant' : 'smooth', block:'start'});
+    target.scrollIntoView({behavior:reduced.matches ? 'auto' : 'smooth', block:'start'});
     navigationTimer = setTimeout(() => { navigating = false; queueUpdate(); }, reduced.matches ? 50 : 1200);
   }
   document.querySelectorAll('a[href^="#"]').forEach(link => {
@@ -123,7 +141,7 @@
     navigating = true;
     window.addEventListener('load', () => {
       const target = document.getElementById(location.hash.slice(1));
-      if (target) { target.scrollIntoView({behavior:'instant'}); target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); }
+      if (target) { target.scrollIntoView({behavior:'auto'}); target.setAttribute('tabindex','-1'); target.focus({preventScroll:true}); }
       navigating = false; queueUpdate();
     }, {once:true});
   }

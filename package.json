@@ -6,7 +6,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "dev:phone": "astro build && astro preview --host"
+    "dev:phone": "astro preview stop || true; astro build && astro preview --host"
   },
   "dependencies": {
     "astro": "^7.3.1"

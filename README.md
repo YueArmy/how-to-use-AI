@@ -25,22 +25,36 @@ PCとスマホを同じWi-Fiにつないだ状態で:
 
 ## 構成
 
-- **記事本体** … `public/posts/<slug>/index.html`
-  Claude Design で作った standalone 版から、実行時に展開されるHTMLを取り出して静的化したもの。
-  デザインは standalone とそのまま同じ。
-- **画像** … `public/images/`（standalone に埋め込まれていた base64 を実ファイル化）
-- **一覧ページ** … `public/index.html`（現在のホーム）
+```
+public/
+├── index.html          … ホーム（記事一覧）
+├── styles.css          … 記事の共通スタイル
+├── second-article.css  … 第2回以降の記事で足しているスタイル
+├── article.js          … 記事の共通の動き（目次・読了の✓・進捗%・本文コピー・計測）
+├── analytics.js        … 計測の共通部品（全ページで読み込む）
+├── survey.js / .css    … 記事内アンケート
+├── posts/<slug>/
+│   ├── index.html      … 記事本体
+│   ├── images/         … その記事の画像
+│   └── article.md      … 「本文をコピー」で渡す Markdown（ある記事だけ）
+└── experience/         … 体験版LP
+```
+
 - `src/styles/global.css` … 一覧ページ用のデザイントークン
+- Astro はほぼ素通し。`public/` の中身がそのまま公開される
 
 ## 記事を追加するとき
 
-1. Claude Design で記事を作り、standalone HTML をエクスポート
-2. 展開して `public/posts/<slug>/index.html` に置く（手順は下記）
-3. `public/index.html` の記事一覧にカードを追加する
-4. 記事の `<head>` か、`article.js` の直前に計測用の1行を入れる
-   `<script src="../../analytics.js" defer></script>`
+1. 新しいブランチを作る
+2. 前の回の `public/posts/<slug>/` をフォルダごとコピーして、新しい slug にする（例：`2026-10-13-xxxx`）
+3. `index.html` の本文を、確定した原稿で書き換える。画像は同じフォルダの `images/` に置く
+   - 「本文をコピー」を使うなら `article.md` も差し替える
+   - `article` 要素の `data-progress-key` は回ごとに別の値にする（目次の✓が前の回と混ざらないように）
+4. 計測の1行が入っているか確認する：`<script src="../../analytics.js" defer></script>`（`article.js` の前）
 5. アンケートを置くなら、下の「記事内アンケート」の3行を入れる
-6. main へのPRを出し、公開日時を決めて「予約公開」する（下記）
+6. `public/index.html` の記事一覧にカードを足す
+7. `npm run dev:phone` でスマホの見た目を確認する（校正は Claude Design で行う）
+8. main へのPRを出し、「予約公開」の手順で公開日時をセットする
 
 ## 計測
 
@@ -98,7 +112,10 @@ PCとスマホを同じWi-Fiにつないだ状態で:
 - ラベルをつけたあとに変更を足したら、いったんラベルを外して確認し直す
 - **最初に一度だけ**：リポジトリに `scheduled-publish` ラベルを作る
 
-### standalone HTML の展開について
+
+## 記録：第1回の作り方（standalone HTML の展開）
+
+第1回は Claude Design で作った standalone 版から静的化した。今は毎回これをする必要はない（前の回をコピーして書く）。
 
 エクスポートされる standalone は、巨大な base64 を実行時に展開するローダー形式になっている。
 そのままでも開けるが、17MB あって画像もフォントも埋め込まれているので、静的化してから置いている。
@@ -114,7 +131,7 @@ PCとスマホを同じWi-Fiにつないだ状態で:
 
 読了トラッキング（%表示・目次のチェック・リセット）は、standalone の
 `Component` クラスと同じロジックをバニラJSで書き直したもの。
-localStorage のキーは `ai-article-read`。
+localStorage のキーは、`article` 要素の `data-progress-key`（無ければ `ai-practice-section-progress-v2`）。
 
 
 ## 体験版LP

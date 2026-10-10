@@ -1,0 +1,106 @@
+/* 記事内アンケート（survey.js と一緒に読み込む） */
+.ai-survey {
+  margin: 56px 0 8px;
+  padding: 28px 28px 24px;
+  background: var(--surface, #f0ece5);
+  border-top: 2px solid var(--accent, #a8412a);
+  font-family: var(--sans, sans-serif);
+  color: var(--body, #403a33);
+}
+.ai-survey-title {
+  margin: 0 0 10px;
+  font: 700 1.125rem/1.7 var(--serif, serif);
+  color: var(--ink, #28241f);
+}
+.ai-survey-lead {
+  margin: 0 0 18px;
+  font-size: .9375rem;
+  line-height: 2;
+}
+.ai-survey fieldset {
+  margin: 0 0 18px;
+  padding: 0;
+  border: 0;
+  display: grid;
+  gap: 8px;
+}
+.ai-survey-choice {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: var(--paper, #f8f6f2);
+  border: 1px solid var(--rule, #ddd6cc);
+  border-radius: 6px;
+  font-size: .9375rem;
+  line-height: 1.6;
+  cursor: pointer;
+}
+.ai-survey-choice:has(input:checked) {
+  border-color: var(--accent, #a8412a);
+  box-shadow: inset 0 0 0 1px var(--accent, #a8412a);
+}
+.ai-survey-choice input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  flex: none;
+  accent-color: var(--accent, #a8412a);
+}
+.ai-survey-field {
+  display: grid;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+.ai-survey-field label {
+  font-weight: 700;
+  font-size: .9375rem;
+  color: var(--ink, #28241f);
+}
+.ai-survey-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid var(--rule, #ddd6cc);
+  border-radius: 6px;
+  background: var(--paper, #f8f6f2);
+  font: inherit;
+  font-size: 1rem; /* iOS で入力時に拡大されないよう 16px 以上 */
+  line-height: 1.7;
+  resize: vertical;
+}
+.ai-survey-submit {
+  display: block;
+  width: 100%;
+  min-height: 48px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 6px;
+  background: var(--accent, #a8412a);
+  color: #fff;
+  font: 700 1rem/1.4 var(--sans, sans-serif);
+  cursor: pointer;
+}
+.ai-survey-submit:disabled {
+  background: #c9bfb4;
+  cursor: not-allowed;
+}
+.ai-survey-note {
+  margin: 12px 0 0;
+  font-size: .8125rem;
+  line-height: 1.8;
+  color: var(--muted, #71695f);
+}
+.ai-survey-dev {
+  color: var(--accent, #a8412a);
+}
+@media (min-width: 861px) {
+  .ai-survey-submit { width: auto; min-width: 200px; }
+}
+.ai-measure-note {
+  margin: 20px 0 0;
+  font-size: .8125rem;
+  line-height: 1.9;
+  color: var(--muted, #71695f);
+}
+.ai-measure-note a { color: inherit; text-underline-offset: 4px; }

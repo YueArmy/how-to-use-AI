@@ -61,7 +61,7 @@
     root.replaceChildren();
     root.appendChild(el('p', { className: 'ai-survey-title', tabindex: '-1' }, 'ありがとうございます！'));
     root.appendChild(el('p', { className: 'ai-survey-lead' },
-      'うまくいかなかったことや、もう少し説明がほしかったところは、私が実際に試してみます。そのまま次の投稿のテーマになるかもしれません。役に立ったところは、もう一段くわしく掘り下げるヒントにさせてもらいます。'));
+      'うまくいかなかったことや、もう少し説明がほしかったところは、私が実際にやってみます。そのまま次の投稿のテーマになるかもしれません。役に立ったところは、もう一段詳しく掘り下げるヒントにさせてもらいます。'));
 
     const canSend = Boolean(root.dataset.formAction && (root.dataset.entryUseful || root.dataset.entryMore));
     if (!canSend && isProduction) return; // 送り先が未設定なら、本番では自由記入を出さない
@@ -114,8 +114,11 @@
     root.id = root.id || `ai-survey-${index}`;
     root.setAttribute('aria-labelledby', `${root.id}-title`);
     root.appendChild(el('p', { className: 'ai-survey-title', id: `${root.id}-title` }, 'ここまで読んでくださって、ありがとうございます。'));
-    root.appendChild(el('p', { className: 'ai-survey-lead' },
-      '試してみてうまくいかなかったことや、「ここ、どうするの？」と思ったところは、私が実際に試してみます。その疑問が、次の投稿のテーマになるかもしれません。よければ教えてください。当てはまるものを選んで「送る」を押すだけです（いくつでも）。'));
+    [
+      '正直に言うと、この手順が皆さんの仕事で本当に使いやすいか、どこかでつまずいて諦めていないか、少し不安に思っています。',
+      '試してうまくいかなかったことや、「ここ、どうするの？」と思ったところは、私が実際にやってみます。その疑問が、次の投稿のテーマになるかもしれません。',
+      'よければ、教えてください。当てはまるものを選んで（いくつでも）、「送る」を押すだけです。15秒ほどで終わります。',
+    ].forEach(text => root.appendChild(el('p', { className: 'ai-survey-lead' }, text)));
 
     const form = el('form', { className: 'ai-survey-form' });
     const fieldset = el('fieldset');

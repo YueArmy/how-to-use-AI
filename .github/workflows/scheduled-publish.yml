@@ -1,0 +1,120 @@
+# 予約公開（毎回使い回す）
+#
+# 使い方：
+#   1. 記事を別ブランチで作って、main へのPRを出す
+#   2. PRの本文のどこかに、公開日時を1行書く（日本時間）
+#        publish-at: 2026-10-13 12:40
+#   3. 確認が済んだら、PRに「scheduled-publish」ラベルをつける
+#
+# 動き：
+#   - 毎週火曜 12:20（日本時間）に起動する（GitHub の定期実行は数分遅れることがあるので早めに起動）
+#   - ラベル付きのPRのうち、公開日時が「今から30分以内」または「過ぎている」ものを探す
+#   - 公開日時になるまで待ってからマージし、サイトを作り直して公開する
+#   - 手動でも実行できる（Actions タブ → Scheduled publish → Run workflow）
+#
+# 注意：
+#   - ラベルをつけたあとにPRへ変更を足したときは、いったんラベルを外して確認し直す
+#   - 定期実行は main にあるこのファイルで動く
+
+name: Scheduled publish
+
+on:
+  schedule:
+    - cron: '20 3 * * 2' # 火曜 03:20 UTC = 火曜 12:20 JST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    outputs:
+      deploy: ${{ steps.publish.outputs.deploy }}
+    steps:
+      - name: Merge labeled PRs when their publish time comes
+        id: publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo 'deploy=false' >> "$GITHUB_OUTPUT"
+          prs=$(gh pr list --repo "$GITHUB_REPOSITORY" --base main --state open \
+                  --label scheduled-publish --json number,body,isDraft)
+          count=$(jq 'length' <<< "$prs")
+          if [[ "$count" == 0 ]]; then
+            echo '予約公開のラベルがついたPRはありません。'
+            exit 0
+          fi
+
+          now=$(date +%s)
+          merged=0
+          for i in $(seq 0 $((count - 1))); do
+            number=$(jq -r ".[$i].number" <<< "$prs")
+            body=$(jq -r ".[$i].body // \"\"" <<< "$prs")
+            when=$(grep -oE 'publish-at:[[:space:]]*[0-9]{4}-[0-9]{2}-[0-9]{2}[ T][0-9]{2}:[0-9]{2}' <<< "$body" \
+                   | head -1 | sed -E 's/publish-at:[[:space:]]*//; s/T/ /' || true)
+            if [[ -z "$when" ]]; then
+              echo "PR #$number: publish-at が書かれていないのでスキップします。"
+              continue
+            fi
+            target=$(TZ=Asia/Tokyo date -d "$when" +%s)
+            wait=$((target - now))
+            if (( wait > 1800 )); then
+              echo "PR #$number: 公開日時（$when）はまだ先なのでスキップします。"
+              continue
+            fi
+            if (( wait > 0 )); then
+              echo "PR #$number: $when まで ${wait} 秒待ちます。"
+              sleep "$wait"
+              now=$(date +%s)
+            fi
+            if [[ $(jq -r ".[$i].isDraft" <<< "$prs") == true ]]; then
+              gh pr ready "$number" --repo "$GITHUB_REPOSITORY"
+            fi
+            gh pr merge "$number" --repo "$GITHUB_REPOSITORY" --squash
+            echo "PR #$number を公開しました（$when）。"
+            merged=$((merged + 1))
+          done
+
+          if (( merged > 0 )); then
+            echo 'deploy=true' >> "$GITHUB_OUTPUT"
+          fi
+
+  # GitHub のトークンでマージしても deploy.yml は動かないので、ここで作り直して公開する
+  build:
+    if: needs.release.outputs.deploy == 'true'
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+
+  deploy:
+    if: needs.release.outputs.deploy == 'true'
+    needs: [release, build]
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

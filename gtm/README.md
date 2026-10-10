@@ -15,7 +15,7 @@
 2. 管理 → 「コンテナをインポート」→ `container-import.json` を選ぶ
    - ワークスペース：既存（Default Workspace）
    - オプション：**統合**（上書きではなく）
-3. 変数 →「GA4 測定ID」を開いて、`G-XXXXXXXXXX` を 1. の測定IDに書き換える
+3. 変数 →「GA4 測定ID」に `G-WCRNSXP3C0` が入っているか確認する（インポート用ファイルに入れてある。GA4 を作り直したときは書き換える）
 4. 右上の「プレビュー」で `https://yuearmy.github.io/how-to-use-AI/` を開き、記事をスクロールしてイベントが出るか確かめる
    - 計測は本番のURLでしか動かない（手元・スマホ確認では送らない作り）。PR #2 をマージして、`public/analytics.js` の `GTM_ID` を入れてから確かめる
 5. 「公開」

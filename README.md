@@ -79,6 +79,9 @@ public/
 - 掲示板に貼るリンクには、どこから来たか分かるよう印をつける
   `?utm_source=lineworks&utm_medium=board&utm_campaign=column_03`
 - 名前・メールアドレス・自由記入の中身は送らない
+- 計測していることは `public/privacy/index.html`（このサイトの計測について）に書いてある。GA4 の規約で、GA4 を使っていること・Cookie を使っていること・Google の説明ページへのリンクを示す必要があるため。ホームの下と、各記事の最後（END OF ARTICLE の中）からリンクしている
+  - 新しい記事にも、最後に `<p class="ending-privacy"><a href="../../privacy/">このサイトの計測について</a></p>` を入れる
+  - 記録する中身を変えたら、このページも直す
 
 ### 記事内アンケート
 

@@ -63,3 +63,4 @@ html{scroll-padding-top:72px}.masthead,.sidebar{display:none}.mobile-reader{disp
 
 /* Keep section headings visible below the sticky reader bar after TOC navigation. */
 @media (max-width:860px){.article .chapter[id]{scroll-margin-top:72px}}
+.privacy-page main{max-width:42em}.privacy-page main p,.privacy-page main li{font-size:1rem;line-height:2;color:var(--body)}.privacy-page main h2{margin:44px 0 12px;font:500 1.25rem/1.7 var(--serif);color:var(--ink)}.privacy-page main ul{padding-left:1.4em;margin:0}.privacy-page main a{color:var(--accent)}.privacy-page .eyebrow a{color:inherit;text-decoration:none}.privacy-back{margin-top:48px}.site-note{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:.8125rem;color:var(--muted)}.site-note a{color:var(--muted);text-underline-offset:4px}.ending-privacy a{color:#c9bfb4;text-underline-offset:4px}.ending-privacy{margin:18px 0 0;font-size:.8125rem!important}

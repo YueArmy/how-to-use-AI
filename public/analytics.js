@@ -12,7 +12,7 @@
   'use strict';
 
   // GTM のコンテナID（例：'GTM-ABC1234'）。空のあいだは何も送らない。
-  const GTM_ID = '';
+  const GTM_ID = 'GTM-PKJQZD9M';
 
   const PRODUCTION_HOSTS = ['yuearmy.github.io'];
   const isProduction = PRODUCTION_HOSTS.includes(location.hostname);

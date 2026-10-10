@@ -26,7 +26,7 @@
     { id: 'tried', label: 'もう試してみた' },
     { id: 'will_try', label: '試してみようと思う' },
     { id: 'useful', label: '考え方として参考になった' },
-    { id: 'more_info', label: 'もう少し説明がほしい部分がある' },
+    { id: 'more_info', label: 'もう少し説明がほしいところがある' },
     { id: 'no_fit', label: '自分には使いどころがなさそう' },
   ];
   const ANONYMOUS_NOTE = '回答は匿名です。名前やメールアドレスは記録されません。';
@@ -60,11 +60,15 @@
   function renderThanks(root, chosen) {
     root.replaceChildren();
     root.appendChild(el('p', { className: 'ai-survey-title', tabindex: '-1' }, 'ありがとうございます！'));
-    root.appendChild(el('p', { className: 'ai-survey-lead' },
-      'うまくいかなかったことや、もう少し説明がほしかったところは、私が実際にやってみます。そのまま次の投稿のテーマになるかもしれません。役に立ったところは、もう一段詳しく掘り下げるヒントにさせてもらいます。'));
-
     const canSend = Boolean(root.dataset.formAction && (root.dataset.entryUseful || root.dataset.entryMore));
-    if (!canSend && isProduction) return; // 送り先が未設定なら、本番では自由記入を出さない
+    // 送り先が未設定なら、本番では自由記入を出さない（「もう少しだけ教えてください」も出さない）
+    const showFields = canSend || !isProduction;
+    if (showFields) {
+      root.appendChild(el('p', { className: 'ai-survey-lead' }, 'よければ、もう少しだけ教えてください。どちらか一方だけでも大丈夫です。'));
+    }
+    root.appendChild(el('p', { className: 'ai-survey-lead' },
+      'うまくいかなかったことや、説明がほしかったところは、私が実際にやってみます。役に立ったところは、さらに掘り下げるヒントにさせてもらいます。'));
+    if (!showFields) return;
 
     const form = el('form', { className: 'ai-survey-form' });
     const fields = [
@@ -115,9 +119,9 @@
     root.setAttribute('aria-labelledby', `${root.id}-title`);
     root.appendChild(el('p', { className: 'ai-survey-title', id: `${root.id}-title` }, 'ここまで読んでくださって、ありがとうございます。'));
     [
-      '正直に言うと、どこかでつまずいて諦めていないか、この手順が皆さんの仕事で本当に使いやすいか、少し不安に思っています。',
+      '正直に言うと、途中でつまずいて諦めていないか、この手順が皆さんの仕事で本当に使えるのか、少し不安です。',
       '試してうまくいかなかったことや、「ここ、どうするの？」と思ったところは、私が実際にやってみます。その疑問が、次の投稿のテーマになるかもしれません。',
-      'よければ、教えてください。当てはまるものを選んで（いくつでも）、「送る」を押すだけです。15秒ほどで終わります。',
+      'よければ教えてください。当てはまるものを選んで（いくつでも）、「送る」を押すだけです。15秒ほどで終わります。',
     ].forEach(text => root.appendChild(el('p', { className: 'ai-survey-lead' }, text)));
 
     const form = el('form', { className: 'ai-survey-form' });

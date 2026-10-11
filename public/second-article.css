@@ -61,11 +61,11 @@
   .second-article .draft-grid a:not(:first-child) { grid-column: span 3; }
   .second-article .flow-point { margin: -10px 0; }
   .second-article .decision-examples { margin-left: 1.2em; }
-  /* 行の高さを詰める試し（第3回だけ。2026/10/11）。1画面に入る量を増やして、全体を俯瞰しやすくする */
-  .second-article.compact-text { line-height: 1.7; }
+  /* 行の高さを詰める試し（第3回だけ。2026/10/11。1.8 → 1.7 → 1.6）。1画面に入る量を増やして、全体を俯瞰しやすくする */
+  .second-article.compact-text { line-height: 1.6; }
   .second-article.compact-text > p:not(.note-label):not(.flow-point),
-  .second-article.compact-text .chapter > p:not(.note-label):not(.flow-point) { line-height: 1.7; }
-  .second-article.compact-text blockquote { line-height: 1.7; }
+  .second-article.compact-text .chapter > p:not(.note-label):not(.flow-point) { line-height: 1.6; }
+  .second-article.compact-text blockquote { line-height: 1.6; }
 }
 @media print {
   .second-article .draft-grid { gap: 4px; }

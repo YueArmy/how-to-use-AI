@@ -13,6 +13,7 @@
         if (!response.ok) throw new Error('本文を取得できませんでした');
         await navigator.clipboard.writeText(await response.text());
         copyStatus.textContent = '本文をコピーしました。AIの入力欄に貼り付けて使えます。';
+        if (typeof window.aiTrack === 'function') window.aiTrack('article_copy');
       } catch (_) {
         copyStatus.textContent = 'コピーできませんでした。Markdownをダウンロードして添付してください。';
       } finally {
@@ -31,6 +32,46 @@
   const key = article.dataset.progressKey || 'ai-practice-section-progress-v2';
   const seen = new Set();
   let passed = new Set();
+  // --- 計測用（画面の✓とは別に、この閲覧の中だけで判定する） ---
+  // 画面の✓はブラウザに保存されて次回も残るが、計測は毎回の閲覧ごとに数えたいので分けている。
+  const track = (name, params) => { if (typeof window.aiTrack === 'function') window.aiTrack(name, params); };
+  const sectionTitle = id => {
+    const heading = document.getElementById(id)?.querySelector('h2');
+    if (!heading) return '';
+    const clone = heading.cloneNode(true);
+    clone.querySelectorAll('.chapter-label').forEach(label => label.remove());
+    return clone.textContent.trim().slice(0, 100);
+  };
+  const viewTracked = new Set();
+  const passTracked = new Set();
+  let completeTracked = false;
+  let dwellSection = '';
+  let dwellStart = 0;
+  let dwellTotal = 0;
+  function flushDwell() {
+    if (!dwellSection) return;
+    if (dwellStart) dwellTotal += Date.now() - dwellStart;
+    const seconds = Math.round(dwellTotal / 1000);
+    if (seconds >= 1) track('section_dwell', { section_id: dwellSection, section_title: sectionTitle(dwellSection), seconds });
+    dwellTotal = 0;
+    dwellStart = document.visibilityState === 'visible' ? Date.now() : 0;
+  }
+  function setDwellSection(id) {
+    if (id === dwellSection) return;
+    flushDwell();
+    dwellSection = id;
+    dwellStart = id && document.visibilityState === 'visible' ? Date.now() : 0;
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') {
+      flushDwell();
+      dwellStart = 0;
+    } else if (dwellSection) {
+      dwellStart = Date.now();
+    }
+  });
+  window.addEventListener('pagehide', flushDwell);
+  // --- 計測用ここまで ---
   let frame = 0;
   let navigating = false;
   let navigationTimer;
@@ -91,10 +132,25 @@
       const rect = section.getBoundingClientRect();
       if (rect.top <= topLine) current = section.id;
       if (!navigating && rect.top >= topLine - 200 && rect.top < window.innerHeight * .8) seen.add(section.id);
-      if (!navigating && seen.has(section.id) && rect.bottom <= window.innerHeight - 40 && rect.bottom > topLine && !passed.has(section.id)) {
+      const reachedEnd = !navigating && seen.has(section.id) && rect.bottom <= window.innerHeight - 40 && rect.bottom > topLine;
+      if (reachedEnd && !passed.has(section.id)) {
         passed.add(section.id); changed = true;
       }
+      // 計測：画面の✓と同じ基準で、この閲覧の中で初めて「見えた」「読み終えた」ときに1回だけ記録
+      if (seen.has(section.id) && !viewTracked.has(section.id)) {
+        viewTracked.add(section.id);
+        track('section_view', { section_id: section.id, section_title: sectionTitle(section.id) });
+      }
+      if (reachedEnd && !passTracked.has(section.id)) {
+        passTracked.add(section.id);
+        track('section_pass', { section_id: section.id, section_title: sectionTitle(section.id) });
+      }
     });
+    if (!completeTracked && sections.length && passTracked.size === sections.length) {
+      completeTracked = true;
+      track('article_complete', { sections: sections.length });
+    }
+    setDwellSection(current || "intro");
     links.forEach(link => {
       if (link.dataset.section === current) link.setAttribute('aria-current', 'location');
       else link.removeAttribute('aria-current');

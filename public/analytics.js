@@ -5,6 +5,10 @@
  * - 手元の確認（localhost や家のWi-Fiの IP アドレス）では GTM を読み込まず、
  *   画面上部に「確認用」の帯を出す。記録したいイベントはコンソールにだけ出す
  * - 個人を特定できる情報は送らない（自由記入は送らない）
+ * - 運営側（自分）のアクセスは、GA4 で除外できるよう目印をつける
+ *   ・自分のブラウザで一度だけ `?internal=1` つきの URL を開くと、そのブラウザに目印が残る
+ *   ・目印がある間は、すべてのイベントに traffic_type=internal がつく（GA4 のデータフィルタで除外する）
+ *   ・目印を外すときは `?internal=0` つきの URL を開く
  *
  * 設計：claude/Web記事_計測設計_v1.md（How to use AI プロジェクト）
  */
@@ -18,6 +22,20 @@
   const isProduction = PRODUCTION_HOSTS.includes(location.hostname);
 
   window.dataLayer = window.dataLayer || [];
+
+  // 運営側のアクセスかどうか（ブラウザごとの目印。保存できない環境では「外部」として扱う）
+  const INTERNAL_KEY = 'ai_internal_traffic';
+  function readInternalFlag() {
+    try {
+      const q = new URLSearchParams(location.search).get('internal');
+      if (q === '1') localStorage.setItem(INTERNAL_KEY, '1');
+      if (q === '0') localStorage.removeItem(INTERNAL_KEY);
+      return localStorage.getItem(INTERNAL_KEY) === '1';
+    } catch (e) {
+      return false;
+    }
+  }
+  const isInternal = readInternalFlag();
 
   /**
    * イベントを記録する。
@@ -36,6 +54,8 @@
   window.aiTrack = track;
 
   if (isProduction && GTM_ID) {
+    // GTM が読み込まれる前に入れておく（Google タグの設定パラメータ traffic_type に使う）
+    if (isInternal) window.dataLayer.push({ traffic_type: 'internal' });
     window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
     const script = document.createElement('script');
     script.async = true;

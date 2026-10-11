@@ -7,13 +7,13 @@
   font-family: var(--sans, sans-serif);
   color: var(--body, #403a33);
 }
-.ai-survey-title {
-  margin: 0 0 10px;
+.ai-survey .ai-survey-title {
+  margin: 0 0 14px;
   font: 700 1.125rem/1.7 var(--serif, serif);
   color: var(--ink, #28241f);
 }
-.ai-survey-lead {
-  margin: 0 0 18px;
+.ai-survey .ai-survey-lead {
+  margin: 0 0 14px;
   font-size: .9375rem;
   line-height: 2;
 }
@@ -104,3 +104,6 @@
   color: var(--muted, #71695f);
 }
 .ai-measure-note a { color: inherit; text-underline-offset: 4px; }
+
+/* 最後の説明文だけ、選択肢との間を少し広げる */
+.ai-survey .ai-survey-lead:last-of-type { margin-bottom: 20px; }

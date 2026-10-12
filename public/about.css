@@ -24,9 +24,13 @@
 .about-br{display:none}
 .about-mission-body{grid-column:2;max-width:36em;margin:40px 0 0;font-size:1.0625rem;line-height:2.1}
 
-.about-vision{grid-column:2;max-width:36em;margin-top:80px;padding-top:28px;border-top:1px solid var(--accent)}
-.about-vision .about-kicker{margin-bottom:16px}
+.about-vision{grid-column:2;margin-top:80px;padding-top:28px;border-top:1px solid var(--accent)}
+.about-kicker span{margin-left:12px;font:italic 400 .9375rem/1 Georgia,serif;color:var(--muted);letter-spacing:.02em}
+.about-vision .about-kicker,.about-value .about-kicker{margin-bottom:16px}
+.about-value{grid-column:2;margin-top:72px;padding-top:28px;border-top:1px solid var(--accent)}
+.about-value .about-kicker{margin-bottom:28px}
 .about-vision-statement{margin:0 0 20px;font:500 clamp(1.35rem,2.2vw,1.75rem)/1.75 var(--serif);color:var(--ink);text-wrap:pretty}
+.about-vision p{max-width:36em}
 .about-vision p:last-child{margin:0;font-size:1rem;line-height:2.05}
 
 /* shared section frame */
@@ -103,7 +107,8 @@
   .about-mission{padding:56px 0 64px}
   .about-mission-statement{font-size:clamp(1.65rem,7.4vw,2.2rem);line-height:1.65}
   .about-br{display:inline}
-  .about-mission-body,.about-vision{grid-column:1}
+  .about-mission-body,.about-vision,.about-value{grid-column:1}
+  .about-value{margin-top:56px}
   .about-mission-body{margin-top:28px;font-size:1rem}
   .about-vision{margin-top:56px}
   .about-section{padding:44px 0 52px;row-gap:24px}

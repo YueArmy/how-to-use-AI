@@ -86,5 +86,6 @@ html{scroll-padding-top:72px}.masthead,.sidebar{display:none}.mobile-reader{disp
 .masthead-side{display:flex;align-items:center;gap:28px}
 .masthead .masthead-about{color:var(--muted);font-weight:400;letter-spacing:.02em}
 .masthead .masthead-about:hover{color:var(--accent);text-decoration:underline}
-.toc-about{display:block;margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);font-size:.8125rem;color:var(--muted)}
+.mobile-reader .reader-home{flex:0 1 auto}
+.reader-about{flex:1;min-width:0;padding-left:14px;margin-left:2px;border-left:1px solid var(--rule);font-size:.75rem;line-height:1.6;color:var(--muted);text-decoration:none;white-space:nowrap}
 

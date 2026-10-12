@@ -39,6 +39,19 @@
 .about-section>:not(.about-section-title){grid-column:2}
 .about-section p{margin:0}
 
+/* 書いている人：冒頭の1文を大きく置き、使い方の3つを「見出し｜本文」の行で並べる。
+   伝えたい一文（コードを読めなくても作れる）だけ、引用の形で立てる。 */
+.about-author-lead{max-width:30em;font:500 clamp(1.2rem,1.9vw,1.5rem)/1.85 var(--serif);color:var(--ink);text-wrap:pretty}
+.about-ways{margin-top:48px}
+.about-way{display:grid;grid-template-columns:minmax(0,13rem) minmax(0,1fr);column-gap:40px;padding:32px 0 36px;border-top:1px solid var(--rule)}
+.about-way h3{margin:0;font:500 1.1875rem/1.75 var(--serif);color:var(--ink);word-break:auto-phrase}
+.about-way-body{display:flex;flex-direction:column;gap:20px;max-width:36em;line-height:2.05}
+.about-way-quote{margin:8px 0;padding:4px 0 4px 24px;border-left:2px solid var(--accent)}
+.about-way-quote p:first-child{font:500 clamp(1.125rem,1.7vw,1.3rem)/1.8 var(--serif);color:var(--ink);word-break:auto-phrase}
+.about-way-quote p+p{margin-top:6px!important;font-size:.875rem;color:var(--muted)}
+.about-way-case{padding:20px 24px;background:var(--surface);font-size:.9375rem;line-height:2}
+.about-br-wide{display:inline}
+
 /* つくっているもの */
 .about-works{display:flex;flex-direction:column}
 .about-work{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr);column-gap:32px;padding:4px 0 40px}
@@ -96,6 +109,8 @@
   .about-page{--about-side:32px;--about-gap:32px}
   .about-work{grid-template-columns:minmax(0,1fr);row-gap:12px}
   .about-work figure{grid-column:1}
+  .about-way{grid-template-columns:minmax(0,1fr);row-gap:14px}
+  .about-br-wide{display:none}
   .about-flow-head,.about-flow-row{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr)}
   .about-flow-head>span,.about-flow-row>div{padding-inline:16px}
 }
@@ -118,6 +133,12 @@
   .about-sub{margin-top:44px}
   .about-split{grid-template-columns:minmax(0,1fr);gap:24px}
   .about-values{grid-template-columns:minmax(0,1fr);gap:28px}
+  .about-author-lead{font-size:1.125rem}
+  .about-ways{margin-top:32px}
+  .about-way{padding:26px 0 30px}
+  .about-way-quote{padding-left:18px}
+  .about-way-quote p:first-child{font-size:1.0625rem;word-break:normal}
+  .about-way-case{margin-inline:calc(-1 * var(--gutter));padding:18px var(--gutter)}
 
   .about-section>.about-flow{grid-column:1;margin-inline:calc(-1 * var(--gutter));border-top-width:1px}
   .about-flow-head{display:none}

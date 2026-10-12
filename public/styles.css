@@ -64,3 +64,18 @@ html{scroll-padding-top:72px}.masthead,.sidebar{display:none}.mobile-reader{disp
 /* Keep section headings visible below the sticky reader bar after TOC navigation. */
 @media (max-width:860px){.article .chapter[id]{scroll-margin-top:72px}}
 .privacy-page main{max-width:42em}.privacy-page main p,.privacy-page main li{font-size:1rem;line-height:2;color:var(--body)}.privacy-page main h2{margin:44px 0 12px;font:500 1.25rem/1.7 var(--serif);color:var(--ink)}.privacy-page main ul{padding-left:1.4em;margin:0}.privacy-page main a{color:var(--accent)}.privacy-page .eyebrow a{color:inherit;text-decoration:none}.privacy-back{margin-top:48px}.site-note{margin-top:56px;padding-top:20px;border-top:1px solid var(--rule);font-size:.8125rem;color:var(--muted)}.site-note a{color:var(--muted);text-underline-offset:4px}.ending-privacy a{color:#c9bfb4;text-underline-offset:4px}.ending-privacy{margin:18px 0 0;font-size:.8125rem!important}
+/* スマホの行の高さを 1.6 に（全回共通。2026/10/11）。1画面に入る量を増やして、全体を俯瞰しやすくする。第2回・第3回の上書きは second-article.css */
+@media(max-width:860px){.article.compact-text{line-height:1.6}}
+
+/* 画像にタイトル相当のコピーが入っている回：見出しは画面上では隠し（HTMLには残す＝読み上げ・検索用）、画像を主役にする */
+.hero-title-hidden{padding-top:20px}.hero-title-hidden h1{position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}.hero-title-hidden .hero-copy{margin:0}.hero-title-hidden .hero-image{margin-top:0}.hero-title-hidden .hero-image img{aspect-ratio:16/9;object-fit:contain}.hero-title-hidden .hero-meta{margin:14px 0 0}
+
+/* 番号つきの節見出し：スマホでは、番号の右隣に「理由」などのラベルを並べる（2026/10/12） */
+@media(max-width:860px){
+.chapter-header.numbered{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:16px;align-items:baseline}
+.chapter-header.numbered .chapter-number{grid-column:1;grid-row:1;margin:0}
+.chapter-header.numbered h2{display:contents}
+.chapter-header.numbered .chapter-label{grid-column:2;grid-row:1}
+.chapter-header.numbered .chapter-title{grid-column:1/-1;grid-row:2;margin-top:12px}
+}
+.site-note{display:flex;flex-wrap:wrap;gap:6px 28px}

@@ -1,0 +1,132 @@
+/* About page.
+   左の細い列に節の名前、右の広い列に中身。この2列の線を、ページ全体でそろえる。
+   目立たせるのは「制作の流れ」の帯（自分／AI の2レーン）だけ。ほかは静かに置く。 */
+
+.about-page{--about-max:1160px;--about-side:48px;--about-label:minmax(0,3fr);--about-body:minmax(0,9fr);--about-gap:56px}
+
+.about-masthead,
+.about-page main,
+.about-footer{max-width:var(--about-max);margin-inline:auto;padding-inline:var(--about-side)}
+
+/* 日本語の見出しを、文節で折り返す */
+.about-page :is(h2,h3,strong,.about-mission-statement,.about-vision-statement,.about-flow-row>div,figcaption){word-break:auto-phrase}
+
+/* masthead */
+.about-masthead{display:flex;align-items:baseline;justify-content:space-between;gap:24px;padding-block:26px;border-bottom:1px solid var(--rule)}
+.about-home{color:var(--ink);text-decoration:none;font:500 .875rem/1.6 var(--sans);letter-spacing:.06em}
+.about-home span{color:var(--accent)}
+.about-masthead-page{font-size:.8125rem;color:var(--muted)}
+
+/* mission + vision */
+.about-mission{display:grid;grid-template-columns:var(--about-label) var(--about-body);column-gap:var(--about-gap);padding:88px 0 96px}
+.about-kicker{grid-column:1/-1;margin:0 0 28px;font:500 .875rem/1.7 var(--sans);color:var(--accent);letter-spacing:.06em}
+.about-mission-statement{grid-column:1/-1;margin:0;font:500 clamp(2rem,3.9vw,3.1rem)/1.6 var(--serif);letter-spacing:-.02em;color:var(--ink)}
+.about-br{display:none}
+.about-mission-body{grid-column:2;max-width:36em;margin:40px 0 0;font-size:1.0625rem;line-height:2.1}
+
+.about-vision{grid-column:2;max-width:36em;margin-top:80px;padding-top:28px;border-top:1px solid var(--accent)}
+.about-vision .about-kicker{margin-bottom:16px}
+.about-vision-statement{margin:0 0 20px;font:500 clamp(1.35rem,2.2vw,1.75rem)/1.75 var(--serif);color:var(--ink);text-wrap:pretty}
+.about-vision p:last-child{margin:0;font-size:1rem;line-height:2.05}
+
+/* shared section frame */
+.about-section{display:grid;grid-template-columns:var(--about-label) var(--about-body);column-gap:var(--about-gap);padding:64px 0 72px;border-top:1px solid var(--ink)}
+.about-section-title{margin:0;font:500 1.375rem/1.7 var(--serif);color:var(--ink);letter-spacing:-.01em}
+.about-section>:not(.about-section-title){grid-column:2}
+.about-section p{margin:0}
+
+/* つくっているもの */
+.about-works{display:flex;flex-direction:column}
+.about-work{display:grid;grid-template-columns:minmax(0,9rem) minmax(0,1fr);column-gap:32px;padding:4px 0 40px}
+.about-work+.about-work{padding-top:36px;border-top:1px solid var(--rule)}
+.about-work h3{margin:0;font:500 1.25rem/1.8 var(--serif);color:var(--ink)}
+.about-work dl{margin:0}
+.about-work dt{font:500 .8125rem/1.8 var(--sans);color:var(--accent);letter-spacing:.04em}
+.about-work dd{margin:4px 0 22px;max-width:36em;line-height:2.05}
+.about-work dd:last-child{margin-bottom:0}
+.about-work figure{grid-column:2;margin:30px 0 0}
+.about-work figure img{width:100%;aspect-ratio:16/9;object-fit:cover;background:var(--surface)}
+.about-work figcaption{padding-top:10px;font-size:.8125rem;line-height:1.85;color:var(--muted)}
+
+/* つくり方 */
+.about-process-intro{display:flex;flex-direction:column;gap:18px;max-width:36em;font-size:1.0625rem;line-height:2.1}
+.about-sub{margin:64px 0 22px;font:700 1rem/1.8 var(--sans);color:var(--ink)}
+
+.about-split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+.about-split>div{padding-top:16px;border-top:2px solid var(--ink)}
+.about-split .about-split-ai{border-color:var(--accent)}
+.about-lane-name{margin-bottom:8px!important;font:500 .8125rem/1.8 var(--sans);color:var(--muted)}
+.about-split-ai .about-lane-name{color:var(--accent)}
+.about-split strong{color:var(--ink)}
+
+/* 制作の流れ：このページで唯一、帯で目立たせる場所 */
+.about-section>.about-flow{grid-column:1/-1;margin-top:4px;background:var(--surface);border-top:2px solid var(--ink)}
+.about-flow-head,
+.about-flow-row{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,4.5fr) minmax(0,4.5fr)}
+.about-flow-head{font:500 1rem/1.8 var(--serif);color:var(--ink)}
+.about-flow-head>span{padding:18px 28px 16px}
+.about-flow-head>span:first-child{font:500 .8125rem/2.2 var(--sans);color:var(--muted)}
+.about-flow-head>span:nth-child(3){color:var(--accent)}
+.about-flow-row{border-top:1px solid var(--rule)}
+.about-flow-row>div{padding:24px 28px 26px;line-height:1.95;font-size:.9375rem}
+.about-flow-step{display:grid;grid-template-columns:2rem minmax(0,1fr);gap:10px;align-items:baseline;font:500 1rem/1.8 var(--serif)!important;color:var(--ink)}
+.about-flow-num{font:italic 400 1.5rem/1 Georgia,serif;color:var(--accent)}
+.about-flow-me{color:var(--ink)}
+.about-flow-ai{border-left:1px solid #cdbdaf;background:color-mix(in srgb,var(--surface) 70%,var(--paper))}
+.about-flow-tag{display:none}
+
+/* 大事にしていること：順番がないので番号は付けない */
+.about-values{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:40px 40px}
+.about-values li{padding-top:18px;border-top:1px solid var(--rule);line-height:2.05}
+.about-values strong{display:block;margin-bottom:8px;font:500 1.125rem/1.75 var(--serif);color:var(--ink);text-wrap:pretty}
+
+/* データの扱い */
+.about-data>div{display:flex;flex-direction:column;gap:12px;max-width:36em;font-size:.9375rem;color:var(--muted)}
+
+/* footer */
+.about-footer{padding-block:28px 64px;border-top:1px solid var(--rule);font-size:.875rem}
+.about-footer a{color:var(--accent)}
+
+/* tablet */
+@media (max-width:960px){
+  .about-page{--about-side:32px;--about-gap:32px}
+  .about-work{grid-template-columns:minmax(0,1fr);row-gap:12px}
+  .about-work figure{grid-column:1}
+  .about-flow-head,.about-flow-row{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr) minmax(0,1.2fr)}
+  .about-flow-head>span,.about-flow-row>div{padding-inline:16px}
+}
+
+/* phone：1列にして、流れは工程ごとに自分／AIを縦に積む */
+@media (max-width:720px){
+  .about-page{--about-side:var(--gutter)}
+  .about-mission,.about-section{grid-template-columns:minmax(0,1fr)}
+  .about-mission{padding:56px 0 64px}
+  .about-mission-statement{font-size:clamp(1.65rem,7.4vw,2.2rem);line-height:1.65}
+  .about-br{display:inline}
+  .about-mission-body,.about-vision{grid-column:1}
+  .about-mission-body{margin-top:28px;font-size:1rem}
+  .about-vision{margin-top:56px}
+  .about-section{padding:44px 0 52px;row-gap:24px}
+  .about-section>:not(.about-section-title){grid-column:1}
+  .about-section-title{font-size:1.25rem}
+  .about-process-intro{font-size:1rem}
+  .about-sub{margin-top:44px}
+  .about-split{grid-template-columns:minmax(0,1fr);gap:24px}
+  .about-values{grid-template-columns:minmax(0,1fr);gap:28px}
+
+  .about-section>.about-flow{grid-column:1;margin-inline:calc(-1 * var(--gutter));border-top-width:1px}
+  .about-flow-head{display:none}
+  .about-flow-row{grid-template-columns:minmax(0,1fr);padding:20px var(--gutter) 22px}
+  .about-flow-row:first-of-type{border-top:0}
+  .about-flow-row>div{padding:0}
+  .about-flow-step{margin-bottom:12px}
+  .about-flow-me,.about-flow-ai{display:grid;grid-template-columns:3rem minmax(0,1fr);gap:8px;padding:8px 0!important;background:none!important;border:0!important}
+  .about-flow-ai{border-top:1px dashed #cdbdaf!important}
+  .about-flow-tag{display:block;font:500 .75rem/2.2 var(--sans);color:var(--muted)}
+  .about-flow-ai .about-flow-tag{color:var(--accent)}
+}
+
+@media print{
+  .about-flow,.about-flow-ai{background:none}
+  .skip-link{display:none}
+}

@@ -78,3 +78,4 @@ html{scroll-padding-top:72px}.masthead,.sidebar{display:none}.mobile-reader{disp
 .chapter-header.numbered .chapter-label{grid-column:2;grid-row:1}
 .chapter-header.numbered .chapter-title{grid-column:1/-1;grid-row:2;margin-top:12px}
 }
+.site-note{display:flex;flex-wrap:wrap;gap:6px 28px}

@@ -95,3 +95,5 @@
 .second-article .article-figure figcaption .figure-links{display:inline-flex;flex-wrap:wrap;gap:0 18px;margin-left:auto}
 .second-article .article-figure figcaption .figure-links a{margin-left:0}
 .second-article .article-figure figcaption a.save-link::after{content:' ↓'}
+.second-article .prompt-actions{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;margin:2px 0 6px}
+.second-article .prompt-actions .prompt-copy-status{flex-basis:100%;margin:0;color:var(--muted);font-size:.8125rem;line-height:1.7;min-height:1.4em}

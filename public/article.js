@@ -21,6 +21,92 @@
       }
     });
   }
+  // --- プロンプトのコピー／画像の保存（ボタンがある記事だけで動く） ---
+  const trackEvent = (name, params) => { if (typeof window.aiTrack === 'function') window.aiTrack(name, params); };
+  async function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      await navigator.clipboard.writeText(text);
+      return;
+    }
+    // 古いブラウザ向け：見えない入力欄に入れて、選択してコピーする
+    const area = document.createElement('textarea');
+    area.value = text;
+    area.setAttribute('readonly', '');
+    area.style.cssText = 'position:fixed;top:0;left:0;opacity:0';
+    document.body.appendChild(area);
+    area.select();
+    const ok = document.execCommand('copy');
+    area.remove();
+    if (!ok) throw new Error('コピーできませんでした');
+  }
+  document.querySelectorAll('[data-copy-prompt]').forEach(button => {
+    const target = document.getElementById(button.dataset.copyPrompt);
+    const status = button.parentElement.querySelector('.prompt-copy-status');
+    if (!target) return;
+    button.addEventListener('click', async () => {
+      // 段落ごとに1行（空行は入れない）。見た目の余白は入れず、文字だけをコピーする
+      const text = Array.from(target.querySelectorAll('p')).map(p => p.textContent.trim()).join('\n');
+      try {
+        await copyText(text);
+        if (status) status.textContent = 'コピーしました。AIの入力欄に貼り付けて使えます。';
+        trackEvent('prompt_copy', { item_id: button.dataset.copyPrompt });
+      } catch (_) {
+        if (status) status.textContent = 'コピーできませんでした。枠の中の文章を長押しして、選択してコピーしてください。';
+      }
+    });
+  });
+  document.querySelectorAll('[data-save-image]').forEach(link => {
+    const url = link.getAttribute('href');
+    const fileName = link.getAttribute('download') || 'image.jpeg';
+    // スマホ（タッチ操作）では共有メニューを開く。iPhone では「画像を保存」で写真アプリに入る。
+    // PC などでは、そのまま通常のダウンロードにする。
+    const preferShare = !!navigator.share && window.matchMedia('(pointer: coarse)').matches;
+    let filePromise = null;
+    const loadFile = () => {
+      if (!filePromise) {
+        filePromise = fetch(url)
+          .then(response => { if (!response.ok) throw new Error('画像を取得できませんでした'); return response.blob(); })
+          .then(blob => new File([blob], fileName, { type: blob.type || 'image/jpeg' }))
+          .catch(error => { filePromise = null; throw error; });
+      }
+      return filePromise;
+    };
+    const downloadDirectly = () => {
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = fileName;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    };
+    // 共有は「押した直後」でないと開けないブラウザがあるので、図の近くまで来たら先に読み込んでおく
+    if (preferShare && 'IntersectionObserver' in window) {
+      const figure = link.closest('figure') || link;
+      const observer = new IntersectionObserver(entries => {
+        if (entries.some(entry => entry.isIntersecting)) {
+          observer.disconnect();
+          loadFile().catch(() => {});
+        }
+      }, { rootMargin: '600px 0px' });
+      observer.observe(figure);
+    }
+    link.addEventListener('click', async event => {
+      trackEvent('note_save', { item_id: link.dataset.saveImage });
+      if (!preferShare) return;
+      event.preventDefault();
+      try {
+        const file = await loadFile();
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({ files: [file] });
+        } else {
+          downloadDirectly();
+        }
+      } catch (error) {
+        if (error && error.name === 'AbortError') return; // 共有メニューを閉じただけ
+        downloadDirectly();
+      }
+    });
+  });
   const sections = Array.from(article.querySelectorAll('section[id]'));
   const links = Array.from(document.querySelectorAll('[data-section]'));
   const menu = document.querySelector('#mobile-toc');

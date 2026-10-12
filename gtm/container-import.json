@@ -209,7 +209,7 @@
               {
                 "type": "TEMPLATE",
                 "key": "arg1",
-                "value": "^(section_view|section_pass|section_dwell|article_complete|article_copy|prompt_copy|survey_submit|survey_choice|survey_comment)$"
+                "value": "^(section_view|section_pass|section_dwell|article_complete|article_copy|prompt_copy|note_save|survey_submit|survey_choice|survey_comment)$"
               }
             ]
           }

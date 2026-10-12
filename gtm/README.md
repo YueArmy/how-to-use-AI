@@ -26,7 +26,7 @@
 |---|---|---|
 | タグ | Google タグ（GA4） | 全ページで GA4 を読み込む（ページ閲覧も自動で記録） |
 | タグ | GA4 イベント - 記事のイベント | 下のイベントを、同じ名前で GA4 に送る |
-| トリガー | CE - 記事のイベント | `section_view` `section_pass` `section_dwell` `article_complete` `article_copy` `prompt_copy` `survey_submit` `survey_choice` `survey_comment` |
+| トリガー | CE - 記事のイベント | `section_view` `section_pass` `section_dwell` `article_complete` `article_copy` `prompt_copy` `note_save` `survey_submit` `survey_choice` `survey_comment` |
 | 変数 | DLV - section_id ほか | イベントと一緒に送る値（`section_id` `section_title` `seconds` `sections` `survey_id` `choice_id` `choice_count` `item_id`） |
 
 ## 3. GA4 でカスタム定義を登録する

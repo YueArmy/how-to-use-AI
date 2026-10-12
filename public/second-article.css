@@ -91,3 +91,7 @@
 @media (min-width: 861px) {
   .second-article .conclusion-box .note-label + p { font-size: 1.3rem; line-height: 2; }
 }
+
+.second-article .article-figure figcaption .figure-links{display:inline-flex;flex-wrap:wrap;gap:0 18px;margin-left:auto}
+.second-article .article-figure figcaption .figure-links a{margin-left:0}
+.second-article .article-figure figcaption a.save-link::after{content:' ↓'}

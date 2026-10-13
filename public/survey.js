@@ -107,7 +107,10 @@
       }
       // 自由記入の中身は計測ツールに送らない。「書いた」ことだけを記録する
       track('survey_comment', { survey_id: root.dataset.survey });
-      form.replaceWith(el('p', { className: 'ai-survey-lead' }, '受け取りました。ありがとうございます！'));
+      const done = el('div', { className: 'ai-survey-done' });
+      done.appendChild(el('p', { className: 'ai-survey-title' }, 'コメントありがとうございます！'));
+      done.appendChild(el('p', { className: 'ai-survey-lead' }, '読んで感じたことを教えていただけて、うれしいです。次の記事や、説明を見直すときの参考にさせていただきます。'));
+      form.replaceWith(done);
     });
     root.appendChild(form);
     const sink = el('iframe', { name: `${root.id}-sink`, title: '送信用', hidden: '' });

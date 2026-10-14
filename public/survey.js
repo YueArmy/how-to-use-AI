@@ -23,10 +23,10 @@
   'use strict';
 
   const CHOICES = [
-    { id: 'tried', label: 'もう試してみた' },
-    { id: 'will_try', label: '試してみようと思う' },
     { id: 'useful', label: '考え方として参考になった' },
     { id: 'more_info', label: 'もう少し説明がほしいところがある' },
+    { id: 'tried_ok', label: '試してみて、うまくいった' },
+    { id: 'tried_ng', label: '試してみたが、うまくいかなかった部分がある' },
     { id: 'no_fit', label: '自分には使いどころがなさそう' },
   ];
   const ANONYMOUS_NOTE = '回答は匿名です。名前やメールアドレスは記録されません。';
@@ -75,8 +75,8 @@
       { key: 'more', label: 'もう少し説明がほしかったところ、うまくいかなかったこと', example: root.dataset.exampleMore },
       { key: 'useful', label: '役に立ったところ', example: root.dataset.exampleUseful },
     ];
-    // 「もう少し説明がほしい」を選んだ人には、その欄を先に出す
-    if (!chosen.includes('more_info')) fields.reverse();
+    // 「もう少し説明がほしい」「うまくいかなかった部分がある」を選んだ人には、その欄を先に出す
+    if (!chosen.includes('more_info') && !chosen.includes('tried_ng')) fields.reverse();
     fields.forEach(field => {
       const id = `${root.id}-${field.key}`;
       const wrap = el('div', { className: 'ai-survey-field' });

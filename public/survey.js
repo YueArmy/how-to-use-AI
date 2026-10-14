@@ -23,10 +23,11 @@
   'use strict';
 
   const CHOICES = [
-    { id: 'useful', label: '考え方として参考になった' },
-    { id: 'more_info', label: 'もう少し説明がほしいところがある' },
+    // 並びは「試した人 → まだ試していない人 → 対象外」
     { id: 'tried_ok', label: '試してみて、うまくいった' },
     { id: 'tried_ng', label: '試してみたが、うまくいかなかった部分がある' },
+    { id: 'useful', label: '考え方として参考になった' },
+    { id: 'more_info', label: 'もう少し説明がほしいところがある' },
     { id: 'no_fit', label: '自分には使いどころがなさそう' },
   ];
   const ANONYMOUS_NOTE = '回答は匿名です。名前やメールアドレスは記録されません。';
